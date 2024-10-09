@@ -1,0 +1,253 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "PT Sans", sans-serif;
+    background-color: #8E3E63;
+}
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-content a {
+    margin: 0 15px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    filter: invert(100%);
+    transition: transform 0.3s;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+}
+.toph {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 1rem;
+    color: #F3FEB8;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative; /* Added for proper positioning */
+}
+
+
+.hero {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: white;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+    background-image: url(../images/bg1.jpg);
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.25rem;
+}
+
+.homediv2{
+    background-color: #CAE6B2;
+    box-sizing: border-box;
+    margin: 3% 1%;
+    padding: 15px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+.homediv2 ul{
+    padding: 5%;
+}
+.homediv2 li{
+    font-size: 1.4em;
+}
+.homediv2 h1{
+    font-size: 2.2em;
+}
+.homediv2 p{
+    margin-top: 2%;
+    font-size: 1.5em;
+}
+.homediv {
+    display: flex; /* Flexbox layout */
+    width: 100%; /* Full width container */
+    height: 700px; /* Fixed height to keep the box size consistent */
+    background-color: #CAE6B2; /* Background color for the box */
+    justify-content: space-between; /* Space between text and image */
+    box-sizing: border-box; /* Ensure padding is included in the size */
+    padding: 20px; /* Optional padding inside the box */
+}
+
+.homedivLeft {
+    width: 30%; /* Text container takes up 30% of the total width */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the text vertically */
+    align-items: flex-start; /* Align text to the left */
+    padding: 20px; /* Add padding around text */
+}
+
+.imglogodiv {
+    padding-top: 20px;
+    width: 70%; /* Image container takes up 70% of the total width */
+    display: flex; /* Flexbox to align images in a row */
+    justify-content: flex; /* Align the images to the right side */
+    align-items: flex-end; /* Align images vertically */
+    height: 100%; /* Ensure the container takes up full height */
+    background-color: #ddd; /* Placeholder color */
+    padding-right: 20px; /* Add some right padding to the images */
+    box-sizing: border-box;
+    padding-bottom: 20px;
+    flex: 2;
+}
+
+.imglogodiv img {
+    flex-direction: row;
+    display: flex; /* Each image acts as an inline block element */
+    max-width: 150px; /* Limit the maximum width of each image */
+    max-height: 100%; /* Ensure the image doesn't exceed the height of the container */
+    margin-left: 100px; /* Space between images */
+    border-radius: 10px; /* Optional: Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Optional: Box shadow for visual enhancement */
+}
+
+.imglogoright
+{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.homediv ul{
+    padding: 5%;
+}
+.homediv li{
+    font-size: 1.2em;
+}
+.homediv h1{
+    font-size: 2.2em;
+}
+.homediv p{
+    margin-top: 2%;
+    font-size: 1.5em;
+}
+/*.imglogodiv
+{
+    margin-top: 4%;
+    width: 90%;
+    height: auto;
+    border-radius: 10px;
+} */
+
+.generate-button 
+{
+    background-color: #7B68EE; /* Green background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 15px 32px; /* Some padding */
+  text-align: center; /* Centered text */
+  text-decoration: none; /* Remove underline */
+  display: inline-block; /* Make the button inline */
+  font-size: 16px; /* Increase font size */
+  margin: 4px 2px; /* Small margin */
+  cursor: pointer; /* Add a pointer cursor on hover */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transitions */
+}
+
+.generate-button:hover
+{
+    background-color: #6959CD; /* Darker green on hover */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+}
+
+.generate-button:active
+{
+    background-color: #483D8B; /* Even darker green when clicked */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow on click */
+  transform: translateY(2px); /* Simulate button press */
+}
+
+
+@media (min-width: 769px) {
+    
+    main {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        margin-left: 15%;
+    }
+    section div{
+        width: 70%;
+        margin-left: 15%;
+    }
+
+}
+@media (min-width: 1300px){
+    main {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        margin-left: 10%;
+    }
+    .homediv{
+        background-color: #CAE6B2;
+        box-sizing: border-box;
+        margin: 3% 1%;
+        padding: 15px;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        align-content: center;
+    }
+    /* .homediv div{
+        flex: 3;
+        margin: 2%;
+    } */
+    
+    .homediv h1{
+        font-size: 2.2em;
+    }
+    .homediv p{
+        margin-top: 2%;
+        font-size: 1.5em;
+    }
+    .imglogodiv{
+    margin-top: 4%;
+    width: 70%;
+    height: auto;
+    border-radius: 10px;
+    flex: 2;
+    }
+    section div{
+        width: 50%;
+        margin-left: 25%;
+    }
+}
+code {
+    font-family: 'Courier New', Courier, monospace;
+}
