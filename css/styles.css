@@ -93,7 +93,7 @@ body {
 .homediv {
     display: flex; /* Flexbox layout */
     width: 100%; /* Full width container */
-    height: 700px; /* Fixed height to keep the box size consistent */
+    /* height: 700px; Fixed height to keep the box size consistent */
     background-color: #CAE6B2; /* Background color for the box */
     justify-content: space-between; /* Space between text and image */
     box-sizing: border-box; /* Ensure padding is included in the size */
@@ -101,7 +101,7 @@ body {
 }
 
 .homedivLeft {
-    width: 30%; /* Text container takes up 30% of the total width */
+    width: 20%; /* Text container takes up 30% of the total width */
     display: flex;
     flex-direction: column;
     justify-content: center; /* Center the text vertically */
@@ -111,10 +111,10 @@ body {
 
 .imglogodiv {
     padding-top: 20px;
-    width: 70%; /* Image container takes up 70% of the total width */
+    width: 70%;
+    height: auto; /* Image container takes up 70% of the total width */
     display: flex; /* Flexbox to align images in a row */
     justify-content: flex; /* Align the images to the right side */
-    align-items: flex-end; /* Align images vertically */
     height: 100%; /* Ensure the container takes up full height */
     background-color: #ddd; /* Placeholder color */
     padding-right: 20px; /* Add some right padding to the images */
@@ -128,17 +128,39 @@ body {
     display: flex; /* Each image acts as an inline block element */
     max-width: 150px; /* Limit the maximum width of each image */
     max-height: 100%; /* Ensure the image doesn't exceed the height of the container */
-    margin-left: 100px; /* Space between images */
     border-radius: 10px; /* Optional: Rounded corners */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Optional: Box shadow for visual enhancement */
+}
+.champPicDiv{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+}
+.champPicDiv img{
+    
+    width: 60%;
 }
 
 .imglogoright
 {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    
 }
 
+.imglogoright div
+{
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    justify-content: center;
+}
+.imglogoright div img{
+    width: 90px;
+}
 
 .homediv ul{
     padding: 5%;
@@ -153,13 +175,7 @@ body {
     margin-top: 2%;
     font-size: 1.5em;
 }
-/*.imglogodiv
-{
-    margin-top: 4%;
-    width: 90%;
-    height: auto;
-    border-radius: 10px;
-} */
+
 
 .generate-button 
 {
@@ -237,7 +253,6 @@ body {
         font-size: 1.5em;
     }
     .imglogodiv{
-    margin-top: 4%;
     width: 70%;
     height: auto;
     border-radius: 10px;
