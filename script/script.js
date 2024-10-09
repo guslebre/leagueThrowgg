@@ -68,13 +68,26 @@ let champion = leagueChampions[champNumber];
 //items[Math.floor(Math.random() * items.length)];
 const finalBuild = [];
 function generateBuild(){
-    for (let i = 0; i < 5; i++) {
+
+    while (finalBuild.length < 5){
+
         let theItem = items[Math.floor(Math.random() * items.length)];
-        if (!finalBuild.includes(theItem)){
+
+        // ROA test
+        // if (theItem == "Rod of Ages" &&
+        //     finalBuild.length == 0)
+        // {
+        //         finalBuild.push(theItem);
+        // }
+        if (!finalBuild.includes(theItem))
+        {
             finalBuild.push(theItem);
-        } else{
+        } 
+        else
+        {
             continue;
         }
+
     }
     let buildBoots = bootsList[Math.floor(Math.random() * bootsList.length)];
     finalBuild.push(buildBoots);
