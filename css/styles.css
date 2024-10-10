@@ -48,7 +48,8 @@ body {
 }
 
 /* Main header */
-.hero {
+.hero 
+{
     text-align: center;
     padding: 2rem;
    /* background-color: #2C2F33; */
@@ -58,8 +59,9 @@ body {
     background-color: #1C1C1C;
 }
 
-.hero h1 {
-    font-size: 2.5rem;
+.hero h1 
+{
+    font-size: 50px;
     margin-bottom: 1rem;
 }
 
@@ -166,6 +168,45 @@ body {
 .imglogoright div img{
     width: 90px;
 }
+
+/* info box */
+
+.img-container {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+}
+
+.img-container img {
+    display: block;
+    width: 100px; /* Set a fixed width or use max-width as needed */
+    height: auto;
+    border-radius: 10px;
+}
+
+.info-box {
+    position: absolute;
+    background-color: #2B2B2B;
+    color: white;
+    padding: 10px;
+    width: 300px; /* Adjust width as needed */
+    bottom: 100%; /* Position above the image */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    font-size: 10px;
+}
+
+
+.img-container:hover .info-box {
+    opacity: 1;
+    visibility: visible;
+}
+
 
 .homediv ul{
     padding: 5%;
