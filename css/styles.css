@@ -175,6 +175,9 @@ body {
     margin-top: 2%;
     font-size: 1.5em;
 }
+#champIcon img{
+    width: 90px;
+}
 
 
 .generate-button 
