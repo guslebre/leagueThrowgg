@@ -89,7 +89,7 @@ function generateBuild(){
 
     // }
         let buildBoots = bootsList[Math.floor(Math.random() * bootsList.length)];
-        finalBuild.push(buildBoots);nal changes. generate build still nto working
+        finalBuild.push(buildBoots);
     }
 }
 
