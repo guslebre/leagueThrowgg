@@ -44,15 +44,18 @@ function generateBuild(){
     while (finalBuild.length < 5){
 
         let theItem = items[Math.floor(Math.random() * items.length)];
-        finalBuild.push(theItem);
-         if (!finalBuild.includes(theItem))
-         {
-             finalBuild.push(theItem);
-         } 
-         else
-         {
-             continue;
-         }
+        finalBuild.push(theItem)
+        // console.log(theItem);
+        //   if (!finalBuild.includes(theItem))
+        //   {
+        //       finalBuild.push(theItem);
+        //       console.log(theItem);
+        //       console.log(finalBuild);
+        //   } 
+        //   else
+        //   {
+        //       continue;
+        //   }
 
     }
     let buildBoots = bootsList[Math.floor(Math.random() * bootsList.length)];

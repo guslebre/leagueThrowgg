@@ -2,7 +2,6 @@ const championAndBuildGenButton = document.getElementById("genButton");
 let championName = " ";
 const finalBuild = [];
 const items = [];
-
 fetch("https://ddragon.leagueoflegends.com/cdn/14.20.1/data/en_US/item.json")
       .then(res => {
           return res.json();
@@ -14,15 +13,16 @@ fetch("https://ddragon.leagueoflegends.com/cdn/14.20.1/data/en_US/item.json")
       .catch(error => console.log(error));
 
 window.onload = function() {
-     generateBuild();
-     rollChampion();
-     displayChampion(championName);
+    rollChampion();
+    displayChampion(championName);
+    generateBuild();
+     
  };
 
 championAndBuildGenButton.onclick = function() {
-    generateBuild();
     rollChampion();
     displayChampion(championName);
+    generateBuild();
 };
 console.log(items);
 console.log(finalBuild);
