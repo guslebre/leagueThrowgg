@@ -60,7 +60,7 @@ const leagueChampions = [
     "Veigar", "Vel'Koz", "Vex", "Vi", "Viego", "Viktor", "Vladimir", "Volibear", 
     "Warwick", "Wukong", "Xayah", "Xerath", "Xin Zhao", "Yasuo", "Yone", "Yorick", 
     "Yuumi", "Zac", "Zed", "Zeri", "Ziggs", "Zilean", "Zoe", "Zyra", 
-    "Milio", "Naafiri", "Briar", "Ambessa Medarda"
+    "Milio", "Naafiri", "Briar"
 ];
 
 
