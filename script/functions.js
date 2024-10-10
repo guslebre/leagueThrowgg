@@ -1,40 +1,3 @@
-const items = [
-    "Abyssal Mask", "Anathema's Chains", "Archangel's Staff", "Ardent Censer", 
-    "Atma's Reckoning", "Axiom Arc", "Banshee's Veil", "Black Cleaver", 
-    "Blackfire Torch", "Blade of the Ruined King", "Bloodletter's Curse", 
-    "Bloodsong", "Bloodthirster", "Bounty of Worlds", "Celestial Opposition", 
-    "Chempunk Chainsword", "Chemtech Putrifier", "Cosmic Drive", "Cryptbloom", 
-    "Dawncore", "Dead Man's Plate", "Death's Dance", "Dream Maker", 
-    "Echoes of Helia", "Eclipse", "Edge of Night", "Essence Reaver", 
-    "Experimental Hexplate", "Fimbulwinter", "Force of Nature", 
-    "Frozen Heart", "Guardian Angel", "Guinsoo's Rageblade", "Heartsteel", 
-    "Hellfire Hatchet", "Hextech Gunblade", "Hextech Rocketbelt", 
-    "Hollow Radiance", "Horizon Focus", "Hubris", "Hullbreaker", 
-    "Iceborn Gauntlet", "Immortal Shieldbow", "Imperial Mandate", 
-    "Infinity Edge", "Jak'Sho, The Protean", "Kaenic Rookern", 
-    "Knight's Vow", "Kraken Slayer", "Liandry's Torment", "Lich Bane", 
-    "Locket of the Iron Solari", "Lord Dominik's Regards", "Luden's Companion", 
-    "Malignance", "Manamune", "Maw of Malmortius", 
-    "Mercurial Scimitar", "Mikael's Blessing", "Moonstone Renewer", 
-    "Morellonomicon", "Mortal Reminder", "Muramana", "Nashor's Tooth", 
-    "Navori Flickerblade", "Opportunity", "Overlord's Bloodmail", 
-    "Perplexity", "Phantom Dancer", "Profane Hydra", "Rabadon's Deathcap", 
-    "Randuin's Omen", "Rapid Firecannon", "Ravenous Hydra", "Redemption", 
-    "Riftmaker", "Rite of Ruin", "Rod of Ages", "Runaan's Hurricane", 
-    "Rylai's Crystal Scepter", "Seraph's Embrace", "Serpent's Fang", 
-    "Serylda's Grudge", "Shadowflame", "Shurelya's Battlesong", 
-    "Solstice Sleigh", "Spear of Shojin", "Spectral Cutlass", 
-    "Spirit Visage", "Staff of Flowing Water", "Statikk Shiv", 
-    "Sterak's Gage", "Stormrazor", "Stormsurge", "Stridebreaker", 
-    "Sundered Sky", "Sunfire Aegis", "Sword of Blossoming Dawn", 
-    "Terminus", "The Collector", "Thornmail", "Titanic Hydra", 
-    "Trailblazer", "Trinity Force", "Umbral Glaive", "Unending Despair", 
-    "Vigilant Wardstone", "Void Staff", "Voltaic Cyclosword", 
-    "Warmog's Armor", "Winter's Approach", "Wit's End", "Wordless Promise", 
-    "Youmuu's Ghostblade", "Yun Tal Wildarrows", "Zaz'Zak's Realmspike", 
-    "Zeke's Convergence", "Zhonya's Hourglass"
-];
-
 const bootsList = ["berserker", "Movespeed","ionian", "mercury", "armor", "mpen","mobility"]
 
 const leagueChampions = [
@@ -81,21 +44,15 @@ function generateBuild(){
     while (finalBuild.length < 5){
 
         let theItem = items[Math.floor(Math.random() * items.length)];
-
-        // ROA test
-        // if (theItem == "Rod of Ages" &&
-        //     finalBuild.length == 0)
-        // {
-        //         finalBuild.push(theItem);
-        // }
-        if (!finalBuild.includes(theItem))
-        {
-            finalBuild.push(theItem);
-        } 
-        else
-        {
-            continue;
-        }
+        finalBuild.push(theItem);
+         if (!finalBuild.includes(theItem))
+         {
+             finalBuild.push(theItem);
+         } 
+         else
+         {
+             continue;
+         }
 
     }
     let buildBoots = bootsList[Math.floor(Math.random() * bootsList.length)];
@@ -105,3 +62,23 @@ function generateBuild(){
 function clearBuild(){
     finalBuild.length = 0;
 }
+function filteringItems(){
+    let htmlOutput = "";
+    for (let key in itemArray) {
+        $item = itemArray[key];
+        
+        if (itemArray.hasOwnProperty(key) &&
+        $item.maps["11"] == true &&
+        $item.gold.total > 2400 &&
+        $item.gold.purchasable == true) 
+        {
+            items.push($item.name);
+        }
+    }
+}
+     //htmlOutput += `<h1>${$item.name}</h1>`;
+
+     // htmlOutput += `<img style="width: 60px;" src="https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/${key}.png">`;
+
+    //  const itemDiv = document.getElementById("testdiv");
+    //     itemDiv.innerHTML = htmlOutput;
