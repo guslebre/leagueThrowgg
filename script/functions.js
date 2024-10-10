@@ -1,4 +1,4 @@
-const bootsList = ["berserker", "Movespeed","ionian", "mercury", "armor", "mpen","mobility"]
+const bootsList = ["Berserker's Greaves", "Boots of Swiftness","Ionian Boots of Lucidity", "Mercury's Treads", "Plated Steelcaps", "Sorcerer's Shoes","Synchronized Souls"]
 const championAndBuildGenButton = document.getElementById("genButton");
 let championName = " ";
 const finalBuild = [];
@@ -41,12 +41,15 @@ function fetching()
             if (itemArray.hasOwnProperty(key) &&
             itemObject.maps["11"] == true &&
             itemObject.gold.total > 2400 &&
-            itemObject.gold.purchasable == true) 
+            itemObject.gold.purchasable == true &&
+            !itemObject.from.includes("3006")) 
             {
                 items.push(itemObject);
+                
             }
         }
         generateBuild();
+        console.log(items);
     })
     .catch(error =>  (error));
 }
