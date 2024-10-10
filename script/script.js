@@ -1,7 +1,7 @@
 window.onload = function() {
      rollChampion();
      displayChampion(championName);
-     generateBuild();
+     fetching();
      
 };
 

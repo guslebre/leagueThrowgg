@@ -28,30 +28,29 @@ const leagueChampions = [
     "Yuumi", "Zac", "Zed", "Zeri", "Ziggs", "Zilean", "Zoe", "Zyra", 
     "Milio", "Naafiri", "Briar"
 ];
-fetch("https://ddragon.leagueoflegends.com/cdn/14.20.1/data/en_US/item.json")
-        .then(res => {
-            return res.json();
-        })
-        .then(data => {
-            itemArray = data.data;
-            for (let key in itemArray) {
-                anItem = itemArray[key];
-                
-                if (itemArray.hasOwnProperty(key) &&
-                anItem.maps["11"] == true &&
-                anItem.gold.total > 2400 &&
-                anItem.gold.purchasable == true) 
-                {
-                    console.log(anItem.name);
-                    items.push(anItem.name);
-                }
+function fetching()
+{
+    fetch("https://ddragon.leagueoflegends.com/cdn/14.20.1/data/en_US/item.json")
+    .then(res => {
+        return res.json();
+    })
+    .then(data => {
+        itemArray = data.data;
+        for (let key in itemArray) {
+            let itemObject = itemArray[key];
+            if (itemArray.hasOwnProperty(key) &&
+            itemObject.maps["11"] == true &&
+            itemObject.gold.total > 2400 &&
+            itemObject.gold.purchasable == true) 
+            {
+                items.push(itemObject);
             }
-        
+        }
+        generateBuild();
+    })
+    .catch(error =>  (error));
+}
 
-
-            generateBuild();
-        })
-        .catch(error => console.log(error));
 
 function rollChampion (){
     championName = leagueChampions[Math.floor(Math.random() * leagueChampions.length)];
@@ -67,31 +66,28 @@ function displayChampion(championName){
 }
 
 function generateBuild(){
-        let theItem = "";
-        console.log(items);
-        console.log(finalBuild);
+        clearBuild();
         while (finalBuild.length < 5){
+            itemNumber = Math.floor(Math.random() * items.length);
+            console.log(itemNumber);
             
-            theitem = items[Math.floor(Math.random() * items.length)];
-            console.log(theItem);
-            finalBuild.push(theItem)
-            // console.log(theItem);
-            //   if (!finalBuild.includes(theItem))
-            //   {
-            //       finalBuild.push(theItem);
-            //       console.log(theItem);
-            //       console.log(finalBuild);
-            //   } 
-            //   else
-            //   {
-            //       continue;
-            //   }
+            if (!finalBuild.includes(items[itemNumber]))
+            {
+                (`the array DOES NOT contains ${items[itemNumber]}`)
+                finalBuild.push(items[itemNumber]);
+            } 
+            else
+            {
+                (`the array contains ${items[itemNumber]}`)
+                continue;
+            }
 
-    // }
+     }
         let buildBoots = bootsList[Math.floor(Math.random() * bootsList.length)];
         finalBuild.push(buildBoots);
-    }
+        console.log(finalBuild);
 }
+
 
 function clearBuild(){
     finalBuild.length = 0;
