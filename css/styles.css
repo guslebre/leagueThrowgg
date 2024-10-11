@@ -164,7 +164,7 @@
     .imglogoright div
     {
         display: flex;
-        flex-direction: row;
+        flex: row;
         align-self: center;
         justify-content: center;
     }
@@ -179,7 +179,7 @@
         display: inline-block;
         margin: 10px;
     }
-
+    
     .img-container img {
         display: block;
         width: 100px; /* Set a fixed width or use max-width as needed */
@@ -187,39 +187,55 @@
         border-radius: 10px;
     }
 
+    
+    
+    /* Updated tooltip (info-box) */
+    /* Ensure .info-box elements are aligned in a column */
     .info-box {
+        display: flex;              /* Enable flexbox */
+        flex-direction: column;     /* Arrange items in a column */
+        align-items: flex-start;    /* Align items to the start of the flex container */
+        
         position: absolute;
-        background-color: #2B2B2B;
-        color: white;
+        background-color: rgba(0, 0, 0, 0.85); /* Darker background with transparency */
+        color: #ff4081; /* Pinkish color for the text */
         padding: 10px;
-        width: 320px; /* Adjust width as needed */
-        height: 300px;
-        bottom: 100%; /* Position above the image */
+        width: 350px; /* Adjust the width as needed */
+        height: auto; /* Adjust height automatically based on content */
+        bottom: 120%; /* Position above the image */
         left: 50%;
         transform: translateX(-50%); /* Center horizontally */
         border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7); /* Stronger shadow to create depth */
         opacity: 0;
         visibility: hidden;
-        transition: opacity 0.3s, visibility 0.3s;
-        font-size: 10px;
-        
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 10; /* Ensure it appears on top */
+        font-size: 12px; /* Small font to fit the design */
+        border: 1px solid #ff4081; /* Pink border to match the theme */
     }
 
-    .info-box p
+    .info-box h2 
     {
         margin-left: 5px;
+        margin-bottom: 10px; /* Add margin to separate the heading from the text below */
     }
 
-   
+    .info-box p 
+    {
+        color: white;
+        margin-left: 5px;
+        margin-top: 5px;
+        font-size: 12px; /* Adjust to make the font smaller if needed */
+    }
 
-    
-
-
+    /* Show the tooltip on hover */
     .img-container:hover .info-box {
         opacity: 1;
         visibility: visible;
     }
+
+    
     /* end of infobox */
 
 
