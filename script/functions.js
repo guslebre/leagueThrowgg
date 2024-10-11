@@ -1,4 +1,5 @@
-const bootsList = ["Berserker's Greaves", "Boots of Swiftness","Ionian Boots of Lucidity", "Mercury's Treads", "Plated Steelcaps", "Sorcerer's Shoes","Synchronized Souls"]
+//const bootsList = ["Berserker's Greaves", "Boots of Swiftness","Ionian Boots of Lucidity", "Mercury's Treads", "Plated Steelcaps", "Sorcerer's Shoes","Synchronized Souls"]
+const bootsList = [];
 const championAndBuildGenButton = document.getElementById("genButton");
 let championName = " ";
 const finalBuild = [];
@@ -28,31 +29,35 @@ const leagueChampions = [
     "Yuumi", "Zac", "Zed", "Zeri", "Ziggs", "Zilean", "Zoe", "Zyra", 
     "Milio", "Naafiri", "Briar"
 ];
-function fetching()
-{
-    fetch("https://ddragon.leagueoflegends.com/cdn/14.20.1/data/en_US/item.json")
-    .then(res => {
+
+
+ function fetching()
+ {
+     fetch("https://ddragon.leagueoflegends.com/cdn/14.20.1/data/en_US/item.json")
+     .then(res => {
         return res.json();
     })
     .then(data => {
         itemArray = data.data;
         for (let key in itemArray) {
             let itemObject = itemArray[key];
+
             if (itemArray.hasOwnProperty(key) &&
             itemObject.maps["11"] == true &&
             itemObject.gold.total > 2400 &&
-            itemObject.gold.purchasable == true &&
-            !itemObject.from.includes("3006")) 
-            {
-                items.push(itemObject);
-                
-            }
-        }
-        generateBuild();
-        console.log(items);
-    })
-    .catch(error =>  (error));
-}
+             itemObject.gold.purchasable == true &&
+             !itemObject.from.includes("3006")) 
+             {
+                 items.push(itemObject);
+             } 
+
+             
+         }
+         generateBuild();
+         console.log(items);
+     })
+     .catch(error =>  (error));
+ }
 
 
 function rollChampion (){

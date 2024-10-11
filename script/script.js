@@ -8,6 +8,6 @@ window.onload = function() {
 championAndBuildGenButton.onclick = function() {
     rollChampion();
     displayChampion(championName);
-    generateBuild();
+    fetching();
 };
 
