@@ -169,8 +169,8 @@ function displayBuild(){
                 let htmlOutput = "";
                 htmlOutput += `<img src="${imagePath}" alt="itemPic"></img>`;  
                 htmlOutput += `<div class="info-box">`; // adding div
-                htmlOutput += `<h2>${item.name}</h2>`; // adding item name
-                htmlOutput += `<img class ="item-icon" src="${imagePath}" alt="${item.name}"`;
+                htmlOutput += `<h2 style="color: orange">${item.name}</h2>`; // adding item name
+             //   htmlOutput += `<img class ="item-icon" src="${imagePath}" alt="${item.name}"`;
                 htmlOutput += `<span>${item.description} ${item.plaintext}</span>`;
                 htmlOutput += "</div>"
                 
