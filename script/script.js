@@ -9,5 +9,6 @@ championAndBuildGenButton.onclick = function() {
     rollChampion();
     displayChampion(championName);
     fetching();
+    sortFinalBuild(finalBuild);
 };
 
