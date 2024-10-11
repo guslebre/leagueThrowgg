@@ -200,7 +200,8 @@
     color: #ff4081; /* Pinkish color for the text */
     padding: 10px;
     width: 250px; /* Adjust the width as needed */
-    height: auto; /* Adjust height automatically based on content */
+    height: auto; 
+    max-height: 300px;/* Adjust height automatically based on content */
     bottom: 120%; /* Position above the image */
     left: 50%;
     transform: translateX(-50%); /* Center horizontally */
@@ -210,10 +211,15 @@
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
     z-index: 10; /* Ensure it appears on top */
-    font-size: 8px; /* Small font to fit the design */
+    font-size: 10px; /*Small font to fit the design */
     border: 1px solid #ff4081; /* Pink border to match the theme */
 }
-
+.info-box stats{
+    font-size: 17px;
+}
+.info-box active{
+    font-size: 20px;
+}
 .info-box h2 {
     margin-left: 5px;
     margin-bottom: 10px; /* Add margin to separate the heading from the text below */

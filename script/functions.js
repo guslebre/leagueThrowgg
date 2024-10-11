@@ -165,16 +165,23 @@ function clearBuild() {
 
 
 function displayBuild(){
-        // itemBox1 = document.getElementById("item1");
-
-        // itembox1.innerHTML +=
-
         const elements = document.querySelectorAll('[id^="item"]');
         let i = 0;
+        
             // Iterate over each element with forEach
             elements.forEach(element => {
-                element.innerHTML += `<img src="https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/${getItemID(finalBuild[i])}.png"> `;  // Log the ID
+                let item = finalBuild[i];
+                let imagePath = `https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/${getItemID(item)}.png `;
+                let htmlOutput = "";
+                htmlOutput += `<img src="${imagePath}" alt="itemPic"></img>`;  
+                htmlOutput += `<div class="info-box">`; // adding div
+                htmlOutput += `<h2>${item.name}</h2>`; // adding item name
+                htmlOutput += `<img class ="item-icon" src="${imagePath}" alt="${item.name}"`;
+                htmlOutput += `${item.description}`;
+                htmlOutput += "</div>"
+                
                 i++
+                element.innerHTML = htmlOutput;
             });
 }
 
