@@ -4,19 +4,32 @@
         box-sizing: border-box;
     }
 
-    body {
-        font-family: "PT Sans", sans-serif;
-        background-color: #121212;
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
     }
+    
+    /* Set body as a flexbox container */
+    body {
+        display: flex;
+        background-color: #121212;
+        flex-direction: column;
+        min-height: 100vh; /* Minimum height of the viewport */
+    }
+    
+    /* Main content container that grows to fill the available space */
+    main {
+        flex: 1; /* Ensures the main content takes up all available space, pushing the footer down */
+    }
+    
     .footer {
         background-color: #1E1E1E;
         color: white;
-        padding: 20px 0;
         text-align: center;
+        padding: 20px 0;
         width: 100%;
         font-size: 12px;
-        padding-top: 30px;
-        padding-bottom: 30px;
     }
 
     .footer-content {
