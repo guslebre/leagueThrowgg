@@ -169,7 +169,7 @@
         justify-content: center;
     }
     .imglogoright div img{
-        width: 90px;
+        width: 55px;
     }
 
     /* info box */
@@ -189,51 +189,57 @@
 
     
     
-    /* Updated tooltip (info-box) */
-    /* Ensure .info-box elements are aligned in a column */
-    .info-box {
-        display: flex;              /* Enable flexbox */
-        flex-direction: column;     /* Arrange items in a column */
-        align-items: flex-start;    /* Align items to the start of the flex container */
-        
-        position: absolute;
-        background-color: rgba(0, 0, 0, 0.85); /* Darker background with transparency */
-        color: #ff4081; /* Pinkish color for the text */
-        padding: 10px;
-        width: 350px; /* Adjust the width as needed */
-        height: auto; /* Adjust height automatically based on content */
-        bottom: 120%; /* Position above the image */
-        left: 50%;
-        transform: translateX(-50%); /* Center horizontally */
-        border-radius: 8px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7); /* Stronger shadow to create depth */
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-        z-index: 10; /* Ensure it appears on top */
-        font-size: 12px; /* Small font to fit the design */
-        border: 1px solid #ff4081; /* Pink border to match the theme */
-    }
+    /* Tooltip (info-box) */
+.info-box {
+    display: flex;              /* Enable flexbox */
+    flex-direction: column;     /* Arrange items in a column */
+    align-items: flex-start;    /* Align items to the start of the flex container */
+    
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.85); /* Darker background with transparency */
+    color: #ff4081; /* Pinkish color for the text */
+    padding: 10px;
+    width: 250px; /* Adjust the width as needed */
+    height: auto; /* Adjust height automatically based on content */
+    bottom: 120%; /* Position above the image */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7); /* Stronger shadow to create depth */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 10; /* Ensure it appears on top */
+    font-size: 8px; /* Small font to fit the design */
+    border: 1px solid #ff4081; /* Pink border to match the theme */
+}
 
-    .info-box h2 
-    {
-        margin-left: 5px;
-        margin-bottom: 10px; /* Add margin to separate the heading from the text below */
-    }
+.info-box h2 {
+    margin-left: 5px;
+    margin-bottom: 10px; /* Add margin to separate the heading from the text below */
+}
 
-    .info-box p 
-    {
-        color: white;
-        margin-left: 5px;
-        margin-top: 5px;
-        font-size: 12px; /* Adjust to make the font smaller if needed */
-    }
+/* Small image under the title */
+.item-icon {
+    width: 40px; /* Set a fixed width for the small icon */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 10px; /* Add space between the image and the following text */
+    border-radius: 4px; /* Optional: rounded corners */
+}
 
-    /* Show the tooltip on hover */
-    .img-container:hover .info-box {
-        opacity: 1;
-        visibility: visible;
-    }
+.info-box p {
+    color: white;
+    margin-left: 5px;
+    margin-top: 5px;
+    font-size: 12px; /* Adjust to make the font smaller if needed */
+}
+
+/* Show the tooltip on hover */
+.img-container:hover .info-box {
+    opacity: 1;
+    visibility: visible;
+}
+
 
     
     /* end of infobox */
