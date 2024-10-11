@@ -212,6 +212,8 @@
     z-index: 10; /* Ensure it appears on top */
     font-size: 8px; /* Small font to fit the design */
     border: 1px solid #ff4081; /* Pink border to match the theme */
+
+    pointer-events: none;
 }
 
 .info-box h2 {
@@ -234,12 +236,18 @@
     font-size: 12px; /* Adjust to make the font smaller if needed */
 }
 
-/* Show the tooltip on hover */
+/* Show the tooltip only when hovering over the img-container */
 .img-container:hover .info-box {
     opacity: 1;
     visibility: visible;
 }
 
+/* Reset opacity and visibility when not hovering over img-container */
+.img-container .info-box {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
 
     
     /* end of infobox */
