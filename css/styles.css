@@ -3,14 +3,21 @@
         padding: 0;
         box-sizing: border-box;
     }
+    
+    
 
     attention, passive, speed, magicDamage, gold, stats {
         display: inline;
+        font-family: 'Rubik', sans-serif;
+    }
+    attention {
+        color: #a3c100
     }
 
     /* Ensure mainText itself allows inline behavior */
     mainText {
         display: block;
+        font-family: 'Rubik', sans-serif;
     }
 
     html, body {
@@ -221,7 +228,7 @@
     background-color: rgba(0, 0, 0, 0.85); /* Darker background with transparency */
     color: #ff4081; /* Pinkish color for the text */
     padding: 10px;
-    width: 250px; /* Adjust the width as needed */
+    width: 270px; /* Adjust the width as needed */
     height: auto; 
     max-height: 300px;/* Adjust height automatically based on content */
     bottom: 120%; /* Position above the image */
@@ -392,3 +399,4 @@
     code {
         font-family: 'Courier New', Courier, monospace;
     }
+    
