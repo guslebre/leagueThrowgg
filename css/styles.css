@@ -4,6 +4,15 @@
         box-sizing: border-box;
     }
 
+    attention, passive, speed, magicDamage, gold, stats {
+        display: inline;
+    }
+
+    /* Ensure mainText itself allows inline behavior */
+    mainText {
+        display: block;
+    }
+
     html, body {
         height: 100%;
         margin: 0;
@@ -224,7 +233,7 @@
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
     z-index: 10; /* Ensure it appears on top */
-    font-size: 10px; /*Small font to fit the design */
+    font-size: 13px; /*Small font to fit the design */
     border: 1px solid #ff4081; /* Pink border to match the theme */
 
     pointer-events: none;
@@ -232,8 +241,12 @@
 .info-box stats{
     font-size: 17px;
 }
+.info-box li{
+    font-size: 13px;
+}
 .info-box active{
-    font-size: 20px;
+    font-size: 14px;
+    display: block;
 }
 .info-box h2 {
     margin-left: 5px;
@@ -242,7 +255,7 @@
 
 /* Small image under the title */
 .item-icon {
-    width: 40px; /* Set a fixed width for the small icon */
+    width: 22px !important; /* Set a fixed width for the small icon */
     height: auto; /* Maintain aspect ratio */
     margin-bottom: 10px; /* Add space between the image and the following text */
     border-radius: 4px; /* Optional: rounded corners */

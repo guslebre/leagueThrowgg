@@ -177,7 +177,7 @@ function displayBuild(){
                 htmlOutput += `<div class="info-box">`; // adding div
                 htmlOutput += `<h2>${item.name}</h2>`; // adding item name
                 htmlOutput += `<img class ="item-icon" src="${imagePath}" alt="${item.name}"`;
-                htmlOutput += `${item.description}`;
+                htmlOutput += `<span>${item.description} ${item.plaintext}</span>`;
                 htmlOutput += "</div>"
                 
                 i++
