@@ -8,7 +8,7 @@ const championAndBuildGenButton = document.getElementById("genButton");
 let championName = " ";
 
 // Array to store the final build of items and boots for the champion. Will hold 5 items + 1 boot.
-const finalBuild = [];
+let finalBuild = [];
 
 // Array to store all valid items fetched from the API.
 const items = new Array();
@@ -47,7 +47,6 @@ function fetching() {
     
     fetchData(url).then(data => {
         const itemArray = data.data;
-        clearBuild();
         // Loop through the items
         for (let key in itemArray) {
             if (itemArray.hasOwnProperty(key)) {
@@ -134,12 +133,13 @@ function generateBuild() {
 
     // Add 5 unique random items to the `finalBuild` array.
     while (finalBuild.length < 5) {
-        itemNumber = Math.floor(Math.random() * items.length);  // Randomly select an item.
+        let itemNumber = Math.floor(Math.random() * items.length);  // Randomly select an item.
 
         // Check if the selected item is already in the build. If not, add it.
-        if (!finalBuild.includes(items[itemNumber])) {
+        if (!finalBuild.some(item => item.name === items[itemNumber].name)) {
             finalBuild.push(items[itemNumber]);
         } else {
+            console.log(`${items[itemNumber].name} ALREADY ADDED`)
             // If the item is already in the build, skip to the next iteration.
             continue;
         }
@@ -149,12 +149,6 @@ function generateBuild() {
     let buildBoots = bootsList[Math.floor(Math.random() * bootsList.length)];
     finalBuild.push(buildBoots);
     console.log(finalBuild);
-    // Log the final build to the console.
-    console.log(items);
-    console.log(bootsList);
-    console.log(items.length);
-    console.log(bootsList.length);
-    getItemID(items[0]);
     
 }
 
