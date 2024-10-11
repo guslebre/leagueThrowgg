@@ -47,7 +47,7 @@ function fetching() {
     
     fetchData(url).then(data => {
         const itemArray = data.data;
-
+        clearBuild();
         // Loop through the items
         for (let key in itemArray) {
             if (itemArray.hasOwnProperty(key)) {
@@ -65,6 +65,7 @@ function fetching() {
 
         // After processing items, generate the build
         generateBuild();
+        displayBuild();
     });
 }
 
@@ -153,10 +154,31 @@ function generateBuild() {
     console.log(bootsList);
     console.log(items.length);
     console.log(bootsList.length);
+    getItemID(items[0]);
     
 }
 
 // Function to clear the current build by resetting the `finalBuild` array.
 function clearBuild() {
     finalBuild.length = 0;  // Reset the array length to 0 to remove all items.
+}
+
+
+function displayBuild(){
+        // itemBox1 = document.getElementById("item1");
+
+        // itembox1.innerHTML +=
+
+        const elements = document.querySelectorAll('[id^="item"]');
+        let i = 0;
+            // Iterate over each element with forEach
+            elements.forEach(element => {
+                element.innerHTML += `<img src="https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/${getItemID(finalBuild[i])}.png"> `;  // Log the ID
+                i++
+            });
+}
+
+function getItemID(item){
+    const itemId = item.image.full.split('.')[0];
+    return itemId;
 }
