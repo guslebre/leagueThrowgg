@@ -316,7 +316,6 @@
 
     
 
-    /* champion displays */
 
     /* Champion Grid Section */
 .champion-grid {
@@ -349,6 +348,8 @@
     font-size: 12px;
     color: #ccc; /* Lighter color for the role text */
 }
+
+/* Champion Grid Section */
 
 
 
