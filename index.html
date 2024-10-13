@@ -6,12 +6,19 @@
     <title>LeagueThrowers.gg</title>
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <script src="./script/functions.js" defer></script>
-    <script src="./script/script.js" defer></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <script src="./JavaScript/variables.js" defer></script>
+    <script src="./JavaScript/functions.js" defer></script>
+    <script src="./JavaScript/displayFunctions.js" defer></script>
+    <script src="./JavaScript/fetchingFunctions.js" defer></script>
+
+    <script src="./JavaScript/script.js" defer></script>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
+    
     <header>
         <nav class="toph"></nav>
     </header>
@@ -21,7 +28,6 @@
     </section>
     
     <main>
-        
         <div class="homediv">
             <div class="homedivLeft">
                 <h1>Ready to Throw?</h1>
@@ -36,22 +42,22 @@
                 </div>
                 <div class="imglogoright">
                     <div>
-                        <div class="img-container">
-                            <img src="images/ZedSquare.webp" alt="Item Description">
+                        <div id="item1" class="img-container">
+                            <!-- <img src="images/ZedSquare.webp" alt="Item Description"> -->
                             <div class="info-box">
                                 <h4>Item Name</h4>
                                 <p>Description and stats for the item...</p>
                             </div>
                         </div>
-                        <div class="img-container">
-                            <img src="images/ZedSquare.webp" alt="Item Description">
+                        <div id="item2" class="img-container">
+                           <!-- <img src="images/ZedSquare.webp" alt="Item Description"> -->
                             <div class="info-box">
                                 <h4>Item Name</h4>
                                 <p>Description and stats for the item...</p>
                             </div>
                         </div>
-                        <div class="img-container">
-                            <img src="images/ZedSquare.webp" alt="Item Description">
+                        <div id="item3" class="img-container">
+                            <!-- <img src="images/ZedSquare.webp" alt="Item Description"> -->
                             <div class="info-box">
                                 <h4>Item Name</h4>
                                 <p>Description and stats for the item...</p>
@@ -59,8 +65,8 @@
                         </div>
                     </div>
                     <div>
-                        <div class="img-container">
-                            <img src="images/ZedSquare.webp" alt="Item Description">
+                        <div id="item4" class="img-container">
+                            <!-- <img src="images/ZedSquare.webp" alt="Item Description"> -->
                             <div class="info-box">
                                 <h4>Item Name</h4>
                                 <p>UNIQUE Passive: Dealing ability damage to enemy champions with your ultimate ability creates a 251−550 radius scorched zone beneath them for 3 seconds, applying a Curse to enemies within that deals 15 (+1. 25% per ability power) magic damage every 0.</p>
@@ -69,8 +75,7 @@
                         
                         <!--Testing info box-->
 
-                        <div class="img-container">
-                            <img src="images/ZedSquare.webp" alt="Item Description">
+                        <div id="item5" class="img-container">
                             <div class="info-box">
                                 <h2>Malignance</h2>
                             
@@ -79,15 +84,15 @@
                         </div>
                     </div>
                     <div>
-                        <div class="img-container">
-                            <img class="item6" src="images/ZedSquare.webp" alt="Item Description">
-                            <div class="info-box">
+                        <div id="item6" class="img-container">
+                            <!-- <div class="info-box">
                                 <h2>Malignance</h2>
-                                <img class="item-icon" src="images/ZedSquare.webp" alt="Small Icon"> <!-- Small image below the title -->
+                                <img class="item-icon" src="images/ZedSquare.webp" alt="Small Icon"> 
                                 <p><strong>+85</strong> Ability Power</p>
                                 <p><strong>+600</strong> Mana</p>
                                 <p><strong>+15</strong> Ability Haste</p>
-                                <p>UNIQUE Passive: Dealing ability damage to enemy champions with your ultimate ability creates a 251−550 radius scorched zone beneath them for 3 seconds, applying a Curse to enemies within that deals 15 (+1. 25% per ability power) magic damage every 0.</p>
+                                <p>UNIQUE Passive: Dealing ability damage to enemy champions with your ultimate ability creates a 251−550
+                                     radius scorched zone beneath them for 3 seconds, applying a Curse to enemies within that deals 15 (+1. 25% per ability power) magic damage every 0.</p> -->
                             </div>
                         </div>
                     </div>
@@ -97,7 +102,7 @@
                 
             </div>
         </div>
-        
+      
         <br>
         
         <section class="champion-grid">
@@ -801,8 +806,7 @@
             LeagueOfGraphs.com isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc. Also available on Android. . Legal. Page generated in 0.008s</p>
         
     </footer>
-    
-
-    <script src="./script/script.js"></script>
+    <audio id="ticsound" src="./sounds/6mili.m4a"></audio>
+    <audio id="bsound" src="./sounds/vine-boom.mp3"></audio>
 </body>
 </html>

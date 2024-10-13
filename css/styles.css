@@ -3,6 +3,22 @@
         padding: 0;
         box-sizing: border-box;
     }
+    
+    
+
+    attention, passive, speed, magicDamage, gold, stats {
+        display: inline;
+        font-family: 'Rubik', sans-serif;
+    }
+    attention {
+        color: #a3c100
+    }
+
+    /* Ensure mainText itself allows inline behavior */
+    mainText {
+        display: block;
+        font-family: 'Rubik', sans-serif;
+    }
 
     html, body {
         height: 100%;
@@ -212,8 +228,9 @@
     background-color: rgba(0, 0, 0, 0.85); /* Darker background with transparency */
     color: #ff4081; /* Pinkish color for the text */
     padding: 10px;
-    width: 250px; /* Adjust the width as needed */
-    height: auto; /* Adjust height automatically based on content */
+    width: 270px; /* Adjust the width as needed */
+    height: auto; 
+    max-height: 300px;/* Adjust height automatically based on content */
     bottom: 120%; /* Position above the image */
     left: 50%;
     transform: translateX(-50%); /* Center horizontally */
@@ -223,12 +240,21 @@
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
     z-index: 10; /* Ensure it appears on top */
-    font-size: 8px; /* Small font to fit the design */
+    font-size: 13px; /*Small font to fit the design */
     border: 1px solid #ff4081; /* Pink border to match the theme */
 
     pointer-events: none;
 }
-
+.info-box stats{
+    font-size: 17px;
+}
+.info-box li{
+    font-size: 13px !important;
+}
+.info-box active{
+    font-size: 14px;
+    display: block;
+}
 .info-box h2 {
     margin-left: 5px;
     margin-bottom: 10px; /* Add margin to separate the heading from the text below */
@@ -236,7 +262,7 @@
 
 /* Small image under the title */
 .item-icon {
-    width: 40px; /* Set a fixed width for the small icon */
+    width: 22px !important; /* Set a fixed width for the small icon */
     height: auto; /* Maintain aspect ratio */
     margin-bottom: 10px; /* Add space between the image and the following text */
     border-radius: 4px; /* Optional: rounded corners */
@@ -283,10 +309,12 @@
         width: 90px;
     }
 
-
+    .generate-button:disabled{
+        opacity: 0.5;
+    }
     .generate-button 
     {
-        background-color: #ff4081; /* Green background */
+    background-color: #ff4081; /* Green background */
     border: none; /* Remove borders */
     color: white; /* White text */
     padding: 15px 32px; /* Some padding */
@@ -411,3 +439,4 @@
     code {
         font-family: 'Courier New', Courier, monospace;
     }
+    
