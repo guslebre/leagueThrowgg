@@ -309,10 +309,12 @@
         width: 90px;
     }
 
-
+    .generate-button:disabled{
+        opacity: 0.5;
+    }
     .generate-button 
     {
-        background-color: #ff4081; /* Green background */
+    background-color: #ff4081; /* Green background */
     border: none; /* Remove borders */
     color: white; /* White text */
     padding: 15px 32px; /* Some padding */

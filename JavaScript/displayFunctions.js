@@ -33,4 +33,5 @@ function displayChampion() {
     
     // Update the webpage to display the champion's name and icon.
     champDisplay.innerHTML = htmlOutput;
+    playRouletteSound();
 }

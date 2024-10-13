@@ -64,6 +64,7 @@ function championsRoulette(){
 
     // Start showing random images every 200ms
     interval = setInterval(displayChampion, 100);
+    championAndBuildGenButton.disabled = true;
 
     // Stop showing random images after 2 seconds and display the chosen one
     setTimeout(() => {
@@ -73,8 +74,10 @@ function championsRoulette(){
 
     setTimeout(() => {
         clearInterval(interval); // Stop fast shuffle
-        displayChampion(); // Start slow shuffle
-    }, $2seconds + $2seconds);
+        displayChampion();
+        playBoomSound();
+        championAndBuildGenButton.disabled = false;
+    }, $2seconds + $2seconds);  
 }
 
 // Function to generate a random build consisting of 5 items and 1 boot for the champion.
@@ -115,4 +118,15 @@ function clearBuild() {
 function getItemID(item){
     const itemId = item.image.full.split('.')[0];
     return itemId;
+}
+
+function playRouletteSound() {
+    var sound = document.getElementById("ticsound");
+    sound.currentTime = 0;  
+    sound.play();
+}
+function playBoomSound() {
+    var sound = document.getElementById("bsound");
+    sound.currentTime = 0; 
+    sound.play();
 }
