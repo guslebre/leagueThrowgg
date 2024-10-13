@@ -314,6 +314,43 @@
     transform: translateY(2px); /* Simulate button press */
     }
 
+    
+
+    /* champion displays */
+
+    /* Champion Grid Section */
+.champion-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    padding: 20px;
+    background-color: #1E1E1E; /* Adjust to fit your background color scheme */
+    margin-bottom: 20px; /* Spacing before the footer */
+}
+
+.champion {
+    text-align: center;
+    color: #fff;
+}
+
+.champion img {
+    width: 50px; /* Adjust size as needed */
+    height: auto;
+    border-radius: 5px; /* Slight rounding of the corners */
+}
+
+.champion p {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #ff4081; /* Adjust to fit your text color scheme */
+}
+
+.champion span {
+    font-size: 12px;
+    color: #ccc; /* Lighter color for the role text */
+}
+
+
 
     @media (min-width: 769px) {
         
