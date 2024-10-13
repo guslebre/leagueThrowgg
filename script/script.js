@@ -1,12 +1,11 @@
 window.onload = function() {
-     rollChampion();
      displayChampion(championName);
-     fetching();
+     fetchingItems();
 };
 
 championAndBuildGenButton.onclick = function() {
-    rollChampion();
-    displayChampion(championName);
-    fetching();
+    displayChampion();
+    testingDisplay()
+    fetchingItems();
 };
 

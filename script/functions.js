@@ -1,5 +1,6 @@
 // List of available boots in the game. Initially empty, will be populated with specific boots later.
 const bootsList = [];
+// puid HzZUFJ7dzs4c_Y-_fc7osdL5TONnOXZzjMHkzfXH9AYZYZMhVQw5IRWLldaq02NdRouWAcuovL0Fzg
 
 // Reference to the button in the HTML that triggers the generation of a champion and build.
 const championAndBuildGenButton = document.getElementById("genButton");
@@ -12,9 +13,10 @@ let finalBuild = [];
 
 // Array to store all valid items fetched from the API.
 const items = new Array();
+const champions = [];
 
 // List of League of Legends champions to randomly select from.
-const leagueChampions = [
+const leagueChampionsNames = [
     "Aatrox","Aurora", "Ahri", "Akali", "Akshan", "Alistar", "Amumu", "Anivia", "Annie", 
     "Aphelios", "Ashe", "Aurelion Sol", "Azir", "Bard", "Bel'Veth", "Blitzcrank", 
     "Brand", "Braum", "Caitlyn", "Camille", "Cassiopeia", "Cho'Gath", "Corki", 
@@ -61,8 +63,8 @@ function isBootItem(item) {
     return item.hasOwnProperty("from") && item.from.includes("1001"); // Boots typically have ID "1001"
 }
 
-// Main fetching function
-function fetching() {
+// Main fetching function Items
+function fetchingItems() {
     const url = "https://ddragon.leagueoflegends.com/cdn/14.20.1/data/en_US/item.json";
     
     fetchData(url).then(data => {
@@ -127,13 +129,14 @@ function sortFinalBuild(buildList){
     }
 }
 
-// Function to randomly select a champion from the `leagueChampions` array.
+// Function to randomly select a champion from the `leagueChampionsNames` array.
 function rollChampion() {
-    championName = leagueChampions[Math.floor(Math.random() * leagueChampions.length)];
+    championName = leagueChampionsNames[Math.floor(Math.random() * leagueChampionsNames.length)];
 }
 
 // Function to display the selected champion on the webpage.
-function displayChampion(championName) {
+function displayChampion() {
+    rollChampion();
     const champDisplay = document.getElementById("champIcon");  // Get the element where the champion will be displayed.
     let htmlOutput = "";
     
@@ -146,6 +149,31 @@ function displayChampion(championName) {
     // Update the webpage to display the champion's name and icon.
     champDisplay.innerHTML = htmlOutput;
 }
+function testingDisplay(){
+    let interval;
+    // Randomly display images for 1-2 seconds
+    let randomIndex;
+    const $2seconds = 2000; // 2 seco
+
+    // Start showing random images every 200ms
+    interval = setInterval(displayChampion, 100);
+
+    // Stop showing random images after 2 seconds and display the chosen one
+    setTimeout(() => {
+        clearInterval(interval); // Stop fast shuffle
+        interval = setInterval(displayChampion, 200); // Start slow shuffle
+    }, $2seconds);
+
+    setTimeout(() => {
+        clearInterval(interval); // Stop fast shuffle
+        interval = setInterval(displayChampion, 400); // Start slow shuffle
+    }, $2seconds + $2seconds);
+
+    setTimeout(() => {
+        clearInterval(interval); // Stop fast shuffle
+        displayChampion(); // Start slow shuffle
+    }, $2seconds + $2seconds + $2seconds);
+}
 
 // Function to generate a random build consisting of 5 items and 1 boot for the champion.
 function generateBuild() {
@@ -155,6 +183,11 @@ function generateBuild() {
     while (finalBuild.length < 5) {
         let itemNumber = Math.floor(Math.random() * items.length);  // Randomly select an item.
 
+
+        // &&
+        // !finalBuild.some(item => item.from.includes("3070")) &&
+        // !finalBuild.some(item => item.from.includes("3077")) &&
+        // !finalBuild.some(item => item.from.includes("3035"))
         // Check if the selected item is already in the build. If not, add it.
         if (!finalBuild.some(item => item.name === items[itemNumber].name)) {
             finalBuild.push(items[itemNumber]);
