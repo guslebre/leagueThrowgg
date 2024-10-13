@@ -5,7 +5,7 @@ window.onload = function() {
 
 championAndBuildGenButton.onclick = function() {
     displayChampion();
-    testingDisplay()
+    championsRoulette()
     fetchingItems();
 };
 
