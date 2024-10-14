@@ -52,7 +52,9 @@ function sortFinalBuild(buildList){
 
 // Function to randomly select a champion from the `leagueChampionsNames` array.
 function rollChampion() {
+    championObject = leagueChampions[Math.floor(Math.random() * leagueChampions.length)];
     championName = leagueChampionsNames[Math.floor(Math.random() * leagueChampionsNames.length)];
+    console.log(championObject.name)
 }
 
 
@@ -118,8 +120,8 @@ function generateBuild() {
     // Randomly select a boot from the `bootsList` and add it to the build.
     let buildBoots = bootsList[Math.floor(Math.random() * bootsList.length)];
     finalBuild.push(buildBoots);
-    console.log(finalBuild);
-    console.log(items);
+    // console.log(finalBuild);
+    // console.log(items);
     
 }
 

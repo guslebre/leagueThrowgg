@@ -1,13 +1,10 @@
 window.onload = function() {
-     displayChampion(championName);
-     fetchingItems();
      fetchingChampions();
+     fetchingItems();
 };
 
 championAndBuildGenButton.onclick = function() {
-    displayChampion();
     championsRoulette()
     fetchingItems();
-    
 };
 

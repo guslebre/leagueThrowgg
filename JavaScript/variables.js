@@ -8,6 +8,8 @@ const championAndBuildGenButton = document.getElementById("genButton");
 // Variable to store the name of the randomly selected champion. Initially set to an empty string.
 let championName = " ";
 
+let championObject;
+
 // Array to store the final build of items and boots for the champion. Will hold 5 items + 1 boot.
 let finalBuild = [];
 

@@ -38,7 +38,6 @@ function fetchingChampions(){
 
     fetchData(url).then(data => {
         const allChampions = data.data;
-
         for (let key in allChampions) {
             if (allChampions.hasOwnProperty(key)) {
                 let champObject = allChampions[key];
@@ -46,7 +45,8 @@ function fetchingChampions(){
             }
         }
         
-
+        displayChampion();
     });
-    console.log(leagueChampions);
+    
+    
 }
