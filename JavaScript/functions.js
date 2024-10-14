@@ -90,9 +90,8 @@ function championsRoulette(){
         displayChampion();
         generateBuild();
         displayBuild();
-        playBoomSound();
+        //playBoomSound();
         championAndBuildGenButton.disabled = false;
-        console.log(bootsList);
     }, $2seconds + $2seconds);  
 }
 
