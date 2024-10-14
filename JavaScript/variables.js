@@ -13,7 +13,7 @@ let finalBuild = [];
 
 // Array to store all valid items fetched from the API.
 const items = new Array();
-const champions = [];
+const leagueChampions = [];
 
 // List of League of Legends champions to randomly select from.
 const leagueChampionsNames = [

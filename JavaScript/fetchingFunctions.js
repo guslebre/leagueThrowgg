@@ -32,3 +32,21 @@ function fetchingItems() {
         displayBuild();
     });
 }
+
+function fetchingChampions(){
+    const url = "https://ddragon.leagueoflegends.com/cdn/14.20.1/data/en_US/champion.json";
+
+    fetchData(url).then(data => {
+        const allChampions = data.data;
+
+        for (let key in allChampions) {
+            if (allChampions.hasOwnProperty(key)) {
+                let champObject = allChampions[key];
+                leagueChampions.push(champObject);
+            }
+        }
+        
+
+    });
+    console.log(leagueChampions);
+}

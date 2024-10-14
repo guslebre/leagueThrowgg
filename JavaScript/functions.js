@@ -16,7 +16,7 @@ function sortFinalBuild(buildList){
     // Loop through the list == wave clear items, first but not priority
     for (let i = 0; i < buildList.length; i++){
         if((finalBuild[i].name == "Statikk Shiv") ||
-            (finalBuild[i].hasOwnProperty("from") &&  // is from tear of goddess
+            (finalBuild[i].hasOwnProperty("from") && 
             finalBuild[i].from.includes("3077"))){
                 removedItem = finalBuild.splice(i,1);
                 finalBuild.unshift(removedItem[0]);
@@ -64,17 +64,27 @@ function championsRoulette(){
 
     // Start showing random images every 200ms
     interval = setInterval(displayChampion, 100);
+    let anInterval = setInterval(generateBuild, 100);
+    let newInterval = setInterval(displayBuild, 100);
     championAndBuildGenButton.disabled = true;
 
     // Stop showing random images after 2 seconds and display the chosen one
     setTimeout(() => {
-        clearInterval(interval); // Stop fast shuffle
-        interval = setInterval(displayChampion, 200); // Start slow shuffle
+        clearInterval(interval); 
+        clearInterval(newInterval);
+        clearInterval(anInterval);// Stop fast shuffle
+        interval = setInterval(displayChampion, 200);
+        anInterval = setInterval(generateBuild, 200);
+        newInterval = setInterval(displayBuild, 200); // Start slow shuffle
     }, $2seconds);
 
     setTimeout(() => {
-        clearInterval(interval); // Stop fast shuffle
+        clearInterval(interval);
+        clearInterval(newInterval)
+        clearInterval(anInterval) // Stop fast shuffle
         displayChampion();
+        generateBuild();
+        displayBuild();
         playBoomSound();
         championAndBuildGenButton.disabled = false;
     }, $2seconds + $2seconds);  
@@ -83,31 +93,75 @@ function championsRoulette(){
 // Function to generate a random build consisting of 5 items and 1 boot for the champion.
 function generateBuild() {
     clearBuild();  // Clear any previous builds.
+   // finalBuild.push(items[5]);  // Assuming this is always added.
 
     // Add 5 unique random items to the `finalBuild` array.
     while (finalBuild.length < 5) {
         let itemNumber = Math.floor(Math.random() * items.length);  // Randomly select an item.
+        let theItem = items[itemNumber];
 
-
-        // &&
-        // !finalBuild.some(item => item.from.includes("3070")) &&
-        // !finalBuild.some(item => item.from.includes("3077")) &&
-        // !finalBuild.some(item => item.from.includes("3035"))
-        // Check if the selected item is already in the build. If not, add it.
-        if (!finalBuild.some(item => item.name === items[itemNumber].name)) {
-            finalBuild.push(items[itemNumber]);
+        // First, check if the item is already in the build by name.
+        if (!finalBuild.some(item => item.name === theItem.name)) {
+            // Then, check the special case for 3077.
+            if(hasTiamat(theItem) && hasTear(theItem) && hasLW(theItem))
+            {
+                finalBuild.push(theItem);
+            }
+            
         } else {
-            console.log(`${items[itemNumber].name} ALREADY ADDED`)
-            // If the item is already in the build, skip to the next iteration.
-            continue;
+            console.log(`${theItem.name} ALREADY ADDED`);
         }
     }
+
+
     sortFinalBuild(finalBuild);
     // Randomly select a boot from the `bootsList` and add it to the build.
     let buildBoots = bootsList[Math.floor(Math.random() * bootsList.length)];
     finalBuild.push(buildBoots);
     console.log(finalBuild);
+    console.log(items);
     
+}
+
+function hasTiamat(theItem){
+    if (theItem.from.includes("3077")) {
+        // Ensure no other item in the finalBuild has 3077 in its 'from' array.
+        if (!finalBuild.some(item => item.from.includes("3077"))) {
+            finalBuild.push(theItem);  // Add the item.
+        } else {
+            console.log(`Another item with Tiamat is already in the build: ${theItem.name}`);
+        }
+    } else {
+        // If 3077 is not involved, add the item directly.
+        return true;
+    }
+}
+function hasTear(theItem){
+    if (theItem.from.includes("3070")) {
+        // Ensure no other item in the finalBuild has 3070 in its 'from' array.
+        if (!finalBuild.some(item => item.from.includes("3070"))) {
+            finalBuild.push(theItem);  // Add the item.
+        } else {
+            console.log(`Another item with tear of goddes is already in the build: ${theItem.name}`);
+        }
+    } else {
+        // If 3077 is not involved, add the item directly.
+        return true;
+    }
+}
+
+function hasLW(theItem){
+    if (theItem.from.includes("3035")) {
+        // Ensure no other item in the finalBuild has LW in its 'from' array.
+        if (!finalBuild.some(item => item.from.includes("3035"))) {
+            finalBuild.push(theItem);  // Add the item.
+        } else {
+            console.log(`Another item with Last Whisper is already in the build: ${theItem.name}`);
+        }
+    } else {
+        // If 3077 is not involved, add the item directly.
+        return true;
+    }
 }
 
 // Function to clear the current build by resetting the `finalBuild` array.
