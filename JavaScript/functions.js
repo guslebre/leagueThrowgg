@@ -1,4 +1,4 @@
-// Function to filter valid items (not boots)
+// Function to filter valid items in SR (not boots)
 function isValidItem(item) {
     return item.maps["11"] === true && // Item belongs to Summoner's Rift
            item.gold.purchasable === true && // Item is purchasable
@@ -6,11 +6,15 @@ function isValidItem(item) {
            !item.from.includes("3006"); // Exclude boots (ID 3006)
 }
 
-// Function to filter valid boots
+// Function to filter is the imte is a boot
 function isBootItem(item) {
-    return item.hasOwnProperty("from") && item.from.includes("1001"); // Boots typically have ID "1001"
+    return item.hasOwnProperty("from") &&
+     item.from.includes("1001") &&
+     item.maps["11"] === true && // Item belongs to Summoner's Rift
+     item.gold.purchasable === true; // Boots typically have ID "1001"
 }
 
+// make sure stacking and wave clear items comes first. final build items goes last
 function sortFinalBuild(buildList){
     let removedItem;
     // Loop through the list == wave clear items, first but not priority
@@ -50,11 +54,10 @@ function sortFinalBuild(buildList){
     }
 }
 
-// Function to randomly select a champion from the `leagueChampionsNames` array.
+// Function to randomly select a champion from the RIOT API
 function rollChampion() {
     championObject = leagueChampions[Math.floor(Math.random() * leagueChampions.length)];
     championName = leagueChampionsNames[Math.floor(Math.random() * leagueChampionsNames.length)];
-    console.log(championObject.name)
 }
 
 
@@ -89,15 +92,23 @@ function championsRoulette(){
         displayBuild();
         playBoomSound();
         championAndBuildGenButton.disabled = false;
+        console.log(bootsList);
     }, $2seconds + $2seconds);  
 }
 
 // Function to generate a random build consisting of 5 items and 1 boot for the champion.
 function generateBuild() {
     clearBuild();  // Clear any previous builds.
-   // finalBuild.push(items[5]);  // Assuming this is always added.
-
-    // Add 5 unique random items to the `finalBuild` array.
+   // FinalBuild 5 items and 1 boots // champion is NOT Cassipeia
+     if(championObject.name != "Cassiopeia"){
+        generateregularBuild();
+     }
+     else { // Casiopeia was chosen
+        generateCassiopeiaBuild();
+     }
+    
+}
+function generateregularBuild(){
     while (finalBuild.length < 5) {
         let itemNumber = Math.floor(Math.random() * items.length);  // Randomly select an item.
         let theItem = items[itemNumber];
@@ -114,15 +125,31 @@ function generateBuild() {
             console.log(`${theItem.name} ALREADY ADDED`);
         }
     }
-
-
     sortFinalBuild(finalBuild);
     // Randomly select a boot from the `bootsList` and add it to the build.
     let buildBoots = bootsList[Math.floor(Math.random() * bootsList.length)];
     finalBuild.push(buildBoots);
-    // console.log(finalBuild);
-    // console.log(items);
-    
+ }
+// script for generating build for Casiopeia // No boots
+function generateCassiopeiaBuild(){
+    while (finalBuild.length < 5) {
+        let itemNumber = Math.floor(Math.random() * items.length);  // Randomly select an item.
+        let theItem = items[itemNumber];
+
+        // First, check if the item is already in the build by name.
+        if (!finalBuild.some(item => item.name === theItem.name) && theItem.name != "Rabadon's Deathcap") {
+            // Then, check the special case for 3077.
+            if(hasTiamat(theItem) && hasTear(theItem) && hasLW(theItem))
+            {
+                finalBuild.push(theItem);
+            }
+            
+        } else {
+            console.log(`${theItem.name} ALREADY ADDED`);
+        }
+    }
+     finalBuild.push(items[25]);// adding rabbaddon
+     sortFinalBuild(finalBuild);
 }
 
 function hasTiamat(theItem){
