@@ -8,12 +8,14 @@ const championAndBuildGenButton = document.getElementById("genButton");
 // Variable to store the name of the randomly selected champion. Initially set to an empty string.
 let championName = " ";
 
+let championObject;
+
 // Array to store the final build of items and boots for the champion. Will hold 5 items + 1 boot.
 let finalBuild = [];
 
 // Array to store all valid items fetched from the API.
 const items = new Array();
-const champions = [];
+const leagueChampions = [];
 
 // List of League of Legends champions to randomly select from.
 const leagueChampionsNames = [
