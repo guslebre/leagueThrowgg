@@ -29,7 +29,7 @@ function displayChampion() {
     htmlOutput += `<h1>${championObject.name}</h1>`;
     
     // Display the champion's icon using a predefined image naming convention.
-    htmlOutput += `<img src="./images/championIcons/${championObject.name.toLowerCase()}.png" alt="championIcon">`; 
+    htmlOutput += `<img loading="lazy" src="./images/championIcons/${championObject.name.toLowerCase()}.png" alt="championIcon">`; 
    // htmlOutput += `<img src="https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/${championObject.id}.png" alt="championIcon">`;
 
     // Update the webpage to display the champion's name and icon.

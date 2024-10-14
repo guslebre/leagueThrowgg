@@ -58,6 +58,8 @@ function sortFinalBuild(buildList){
 function rollChampion() {
     championObject = leagueChampions[Math.floor(Math.random() * leagueChampions.length)];
     championName = leagueChampionsNames[Math.floor(Math.random() * leagueChampionsNames.length)];
+    // console.log(leagueChampions);
+    // championObject = leagueChampions[162];
 }
 
 
@@ -101,12 +103,42 @@ function generateBuild() {
     clearBuild();  // Clear any previous builds.
    // FinalBuild 5 items and 1 boots // champion is NOT Cassipeia
      if(championObject.name != "Cassiopeia"){
-        generateregularBuild();
+        if(championObject.partype == "Mana"){
+            generateregularBuild();
+        }
+        else {
+            generateBuildNoManaItems();
+        }
+        
      }
      else { // Casiopeia was chosen
         generateCassiopeiaBuild();
      }
     
+}
+function generateBuildNoManaItems(){
+    while (finalBuild.length < 5) {
+        let itemNumber = Math.floor(Math.random() * items.length);  // Randomly select an item.
+        let theItem = items[itemNumber];
+
+        // First, check if the item is already in the build by name.
+        // then check if item has any mana property;
+        if (!finalBuild.some(item => item.name === theItem.name) &&
+            !theItem.tags.includes("Mana")) {
+            // Then, do not repeat items
+            if(hasTiamat(theItem) && hasLW(theItem))
+            {
+                finalBuild.push(theItem);
+            }
+            
+        } else {
+            console.log(`${theItem.name} ALREADY ADDED`);
+        }
+    }
+    sortFinalBuild(finalBuild);
+    // Randomly select a boot from the `bootsList` and add it to the build.
+    let buildBoots = bootsList[Math.floor(Math.random() * bootsList.length)];
+    finalBuild.push(buildBoots);
 }
 function generateregularBuild(){
     while (finalBuild.length < 5) {
