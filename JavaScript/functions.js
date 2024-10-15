@@ -47,7 +47,8 @@ function sortFinalBuild(buildList){
     // Loop through the list == Rabbadon must be last
     for (let i = 0; i < buildList.length; i++){
         if(finalBuild[i].name == "Rabadon's Deathcap" ||
-        finalBuild[i].name == "Void Staff"){
+        finalBuild[i].name == "Void Staff" ||
+        finalBuild[i].name == "Lord Dominik's Regards"){
                 removedItem = finalBuild.splice(i,1);
                 finalBuild.push(removedItem[0]);
             }
@@ -124,7 +125,8 @@ function generateBuildNoManaItems(){
         // First, check if the item is already in the build by name.
         // then check if item has any mana property;
         if (!finalBuild.some(item => item.name === theItem.name) &&
-            !theItem.tags.includes("Mana")) {
+            !theItem.tags.includes("Mana") && 
+            !theItem.tags.includes("ManaRegen")) {
             // Then, do not repeat items
             if(hasTiamat(theItem) && hasLW(theItem))
             {
