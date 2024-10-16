@@ -26,10 +26,11 @@ function fetchingItems() {
                 }
             }
         }
-
-        // After processing items, generate the build
         generateBuild();
         displayBuild();
+        // // After processing items, generate the build
+        // generateBuild();
+        // displayBuild();
     });
 }
 
@@ -45,47 +46,15 @@ async function fetchingChampions(){
             }
         }
         
-        displayChampion();
-        console.log(leagueChampions);
-        console.log(leagueChampions[0]);
+        rollChampion();
         for(let i = 0; i < leagueChampions.length;i++){
             leagueChampionsNames.push(leagueChampions[i].id);
         }
-        console.log(leagueChampionsNames);
-        
+        //console.log(leagueChampionsNames);
+        displayChampion();
+     
     });
-    
-// Base URL for the API
-const baseUrl = 'https://ddragon.leagueoflegends.com/cdn/14.20.1/data/en_US/champion/';
+} 
 
-// Function to fetch data for each champion and return the result
-async function fetchChampionData(champion) {
-  const response = await fetch(`${baseUrl}${champion}.json`);
-  if (!response.ok) {
-    throw new Error(`Error fetching data for ${champion}`);
-  }
-  return response.json(); // Return the JSON data
-}
 
-// Function to fetch data for all champions and add them to a list
-async function fetchAllChampions() {
-  const championList = [];
 
-  for (let champion of leagueChampionsNames) {
-    try {
-      const championData = await fetchChampionData(champion);
-      championList.push(championData);
-    } catch (error) {
-      console.error(`Failed to fetch data for ${champion}: ${error.message}`);
-    }
-  }
-
-  return championList;
-}
-
-// Run the function and log the result
-fetchAllChampions().then((championList) => {
-  console.log(championList); // This will contain all the fetched champion data
-});
-
-}

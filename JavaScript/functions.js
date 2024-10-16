@@ -95,7 +95,7 @@ function championsRoulette(){
         displayBuild();
         playBoomSound();
         championAndBuildGenButton.disabled = false;
-        console.log(bootsList);
+       // console.log(bootsList);
     }, $2seconds + $2seconds);  
 }
 
@@ -128,7 +128,7 @@ function generateBuildNoManaItems(){
             !theItem.tags.includes("Mana") && 
             !theItem.tags.includes("ManaRegen")) {
             // Then, do not repeat items
-            if(hasTiamat(theItem) && hasLW(theItem))
+            if(validateItemBeforeAdd(theItem))
             {
                 finalBuild.push(theItem);
             }
@@ -150,7 +150,7 @@ function generateregularBuild(){
         // First, check if the item is already in the build by name.
         if (!finalBuild.some(item => item.name === theItem.name)) {
             // Then, check the special case for 3077.
-            if(hasTiamat(theItem) && hasTear(theItem) && hasLW(theItem))
+            if(validateItemBeforeAdd(theItem))
             {
                 finalBuild.push(theItem);
             }
@@ -171,9 +171,11 @@ function generateCassiopeiaBuild(){
         let theItem = items[itemNumber];
 
         // First, check if the item is already in the build by name.
-        if (!finalBuild.some(item => item.name === theItem.name) && theItem.name != "Rabadon's Deathcap") {
+        if (!finalBuild.some(item => item.name === theItem.name) &&
+             theItem.name != "Rabadon's Deathcap" &&
+             theItem.name != "Runaan's Hurricane") {
             // Then, check the special case for 3077.
-            if(hasTiamat(theItem) && hasTear(theItem) && hasLW(theItem))
+            if(validateItemBeforeAdd(theItem))
             {
                 finalBuild.push(theItem);
             }
@@ -185,27 +187,77 @@ function generateCassiopeiaBuild(){
      finalBuild.push(items[25]);// adding rabbaddon
      sortFinalBuild(finalBuild);
 }
-
+function validateItemBeforeAdd(theItem){
+    if(hasJewel(theItem) &&
+        hasTiamat(theItem) &&
+        hasSheen(theItem) &&
+        hasTear(theItem) &&
+        hasLW(theItem) &&
+        hasShieldItem(theItem))
+        {
+            return true
+        }
+        else{
+            return false
+        }
+}
+function hasShieldItem(theItem){
+    if(getItemID(theItem) == "3053" ||
+        getItemID(theItem) == "6673" ||
+        getItemID(theItem) == "3156" ||
+        getItemID(theItem) == "3003")
+        {
+            if (!finalBuild.some(item => getItemID(theItem) == "3053" ||
+                                            getItemID(theItem) == "6673" ||
+                                            getItemID(theItem) == "3156") ||
+                                            getItemID(theItem) == "3003") {
+                return true  // Add the item.
+            } else {
+                console.log(`Another item with Shield is already in the build: ${theItem.name}`);
+                return false;
+            }
+        }
+    else {
+        return true;
+    }
+}
+function hasJewel(theItem){
+    if (theItem.from.includes("4630")) {
+        // Ensure no other item in the finalBuild has 3077 in its 'from' array.
+        if (!finalBuild.some(item => item.from.includes("4630"))) {
+            return true  // Add the item.
+        } else {
+            console.log(`Another item with Jewel is already in the build: ${theItem.name}`);
+            return false;
+        }
+    } else {
+        // If 3077 is not involved, add the item directly.
+        return true;
+    }
+    
+}
 function hasTiamat(theItem){
     if (theItem.from.includes("3077")) {
         // Ensure no other item in the finalBuild has 3077 in its 'from' array.
         if (!finalBuild.some(item => item.from.includes("3077"))) {
-            finalBuild.push(theItem);  // Add the item.
+            return true  // Add the item.
         } else {
             console.log(`Another item with Tiamat is already in the build: ${theItem.name}`);
+            return false;
         }
     } else {
         // If 3077 is not involved, add the item directly.
         return true;
     }
 }
-function hasTear(theItem){
-    if (theItem.from.includes("3070")) {
-        // Ensure no other item in the finalBuild has 3070 in its 'from' array.
-        if (!finalBuild.some(item => item.from.includes("3070"))) {
-            finalBuild.push(theItem);  // Add the item.
+function hasSheen(theItem){
+    if (theItem.from.includes("3057")) {
+        // Ensure no other item in the finalBuild has 3077 in its 'from' array.
+        if (!finalBuild.some(item => item.from.includes("3057"))) {
+            return true  // Add the item.
         } else {
-            console.log(`Another item with tear of goddes is already in the build: ${theItem.name}`);
+            console.log(`Another item with Sheen is already in the build: ${theItem.name}`);
+            return false;
         }
     } else {
         // If 3077 is not involved, add the item directly.
@@ -213,13 +265,45 @@ function hasTear(theItem){
     }
 }
 
+function hasTear(theItem){
+    if (theItem.from.includes("3070")) {
+        // Ensure no other item in the finalBuild has 3077 in its 'from' array.
+        if (!finalBuild.some(item => item.from.includes("3070"))) {
+            return true  // Add the item.
+        } else {
+            console.log(`Another item with Tear is already in the build: ${theItem.name}`);
+            return false;
+        }
+    } else {
+        // If 3077 is not involved, add the item directly.
+        return true;
+    }
+}
+function isValidRunan(theItem){
+    if(theItem.name != "Runaan's Hurricane"){
+        return true;
+    }
+    else{
+        if (championObject.stats.attackrange > 400){
+            return true;
+        } else {
+            return false;
+        }
+    } 
+}
+//     
 function hasLW(theItem){
-    if (theItem.from.includes("3035")) {
+    if (theItem.from.includes("3035") ||
+        getItemID(theItem) == "3302" ||
+        getItemID(theItem) == "3071") {
         // Ensure no other item in the finalBuild has LW in its 'from' array.
-        if (!finalBuild.some(item => item.from.includes("3035"))) {
-            finalBuild.push(theItem);  // Add the item.
+        if (!finalBuild.some(item => item.from.includes("3035") ||
+                                        getItemID(theItem) == "3302" ||
+                                        getItemID(theItem) == "3071")) {
+            return true;  // Add the item.
         } else {
             console.log(`Another item with Last Whisper is already in the build: ${theItem.name}`);
+            return false;
         }
     } else {
         // If 3077 is not involved, add the item directly.
@@ -229,7 +313,8 @@ function hasLW(theItem){
 
 // Function to clear the current build by resetting the `finalBuild` array.
 function clearBuild() {
-    finalBuild.length = 0;  // Reset the array length to 0 to remove all items.
+    finalBuild.length = 0;
+    shieldItemAdded == false;  // Reset the array length to 0 to remove all items.
 }
 
 function getItemID(item){
