@@ -227,7 +227,7 @@ function hasJewel(theItem){
     if (theItem.from.includes("4630") ) {
         // Ensure no other item in the finalBuild has 3077 in its 'from' array.
         if (!finalBuild.some(item => item.from.includes("4630") ||
-                                        getItemID(item))) {
+                                        getItemID(item) == "8020")) {
             return true  // Add the item.
         } else {
             console.log(`Another item with Jewel/Magic pen by % is already in the build: ${theItem.name}`);
