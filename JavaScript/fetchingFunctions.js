@@ -26,11 +26,10 @@ function fetchingItems() {
                 }
             }
         }
-        generateBuild();
-        displayBuild();
+        
         // // After processing items, generate the build
-        // generateBuild();
-        // displayBuild();
+         generateBuild();
+         displayBuild();
     });
 }
 
@@ -50,8 +49,8 @@ async function fetchingChampions(){
         for(let i = 0; i < leagueChampions.length;i++){
             leagueChampionsNames.push(leagueChampions[i].id);
         }
-        //console.log(leagueChampionsNames);
         displayChampion();
+      
      
     });
 } 

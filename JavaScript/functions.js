@@ -193,6 +193,8 @@ function validateItemBeforeAdd(theItem){
         hasSheen(theItem) &&
         hasTear(theItem) &&
         hasLW(theItem) &&
+        hasBamiCinder(theItem) &&
+        isValidRunan(theItem) &&
         hasShieldItem(theItem))
         {
             return true
@@ -222,12 +224,13 @@ function hasShieldItem(theItem){
     }
 }
 function hasJewel(theItem){
-    if (theItem.from.includes("4630")) {
+    if (theItem.from.includes("4630") ) {
         // Ensure no other item in the finalBuild has 3077 in its 'from' array.
-        if (!finalBuild.some(item => item.from.includes("4630"))) {
+        if (!finalBuild.some(item => item.from.includes("4630") ||
+                                        getItemID(item))) {
             return true  // Add the item.
         } else {
-            console.log(`Another item with Jewel is already in the build: ${theItem.name}`);
+            console.log(`Another item with Jewel/Magic pen by % is already in the build: ${theItem.name}`);
             return false;
         }
     } else {
@@ -235,6 +238,20 @@ function hasJewel(theItem){
         return true;
     }
     
+}
+function hasBamiCinder(theItem){
+    if (theItem.from.includes("6660")) {
+        // Ensure no other item in the finalBuild has 3077 in its 'from' array.
+        if (!finalBuild.some(item => item.from.includes("6660"))) {
+            return true  // Add the item.
+        } else {
+            console.log(`Another item with Bami's Cinder is already in the build: ${theItem.name}`);
+            return false;
+        }
+    } else {
+        // If 3077 is not involved, add the item directly.
+        return true;
+    }
 }
 function hasTiamat(theItem){
     if (theItem.from.includes("3077")) {
