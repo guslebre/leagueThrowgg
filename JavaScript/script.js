@@ -1,7 +1,6 @@
 window.onload = function() {
-     fetchingChampions();
+     fetchAllChampionData();
      fetchingItems();
-     
 };
 
 championAndBuildGenButton.onclick = function() {
