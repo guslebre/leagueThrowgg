@@ -23,10 +23,11 @@ function displayBuild(){
 function displayChampion() {
     rollChampion();
     const champDisplay = document.getElementById("champIcon");  // Get the element where the champion will be displayed.
+    championName = championObject.name;
     let htmlOutput = "";
     
     // Display the champion's name as a heading.
-    htmlOutput += `<h1>${championObject.name}</h1>`;
+    htmlOutput += `<h1>${championName}</h1>`;
     
     // Display the champion's icon using a predefined image naming convention.
     htmlOutput += `<img loading="lazy" src="./images/championIcons/${championObject.name.toLowerCase()}.png" alt="championIcon">`; 
