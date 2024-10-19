@@ -57,7 +57,8 @@ function sortFinalBuild(buildList){
 // Function to randomly select a champion from the RIOT API
 function rollChampion() {
     championObject = leagueChampions[Math.floor(Math.random() * leagueChampions.length)];
-    championName = leagueChampionsNames[Math.floor(Math.random() * leagueChampionsNames.length)];
+    //championName = leagueChampionsNames[Math.floor(Math.random() * leagueChampionsNames.length)];
+    championObject = leagueChampions[28];
 }
 
 
