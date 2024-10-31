@@ -90,8 +90,8 @@ async function fetchChampionData() {
 // Function to trigger the entire flow
 async function fetchAllChampionData() {
     const allChampionData = await fetchChampionData();
-    console.log(allChampionData);
-    console.log(leagueChampionsNames)
+    // console.log(allChampionData);
+    // console.log(leagueChampionsNames)
 }
 
 // Helper function to fetch data from a URL (since you mentioned fetchData is used)

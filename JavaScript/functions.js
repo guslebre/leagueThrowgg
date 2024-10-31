@@ -58,8 +58,8 @@ function sortFinalBuild(buildList){
 // Function to randomly select a champion from the RIOT API
 function rollChampion() {
     championObject = leagueChampions[Math.floor(Math.random() * leagueChampions.length)];
-    console.log(championObject);
-    console.log(championName);
+    // console.log(championObject);
+    // console.log(championName);
 }
 
 
@@ -142,21 +142,56 @@ function generateBuildNoManaItems(){
     finalBuild.push(buildBoots);
 }
 function generateregularBuild(){
+    let mainItem;
+    let firstItemTags = [];
+    numberOfCriticItems = 0;
     while (finalBuild.length < 5) {
         let itemNumber = Math.floor(Math.random() * items.length);  // Randomly select an item.
         let theItem = items[itemNumber];
-
-        // First, check if the item is already in the build by name.
-        if (!finalBuild.some(item => item.name === theItem.name)) {
-            // Then, check the special case for 3077.
-            if(validateItemBeforeAdd(theItem))
+        
+        if( finalBuild.length < 1)
+        {
+            if(theItem.tags.length <=2)
             {
-                finalBuild.push(theItem);
+                continue;
             }
-            
-        } else {
-            console.log(`${theItem.name} ALREADY ADDED`);
+            mainItem = items[itemNumber];
+            finalBuild.push(theItem);
+            console.log(`${theItem.name} ADDED`);
+            for (let i = 0; i < theItem.tags.length; i++)
+            {
+                if(theItem.tags[i] !="Active")
+                {
+                    firstItemTags.unshift(theItem.tags[i]);
+                }
+            }
+            console.log(mainItem.name);
+            console.log(firstItemTags);
         }
+        else
+        {
+            // First, check if the item is already in the build by name.
+            if (!finalBuild.some(item => item.name === theItem.name)) 
+                {
+                    if (isRelatedItem(firstItemTags, theItem))
+                    {
+                        if(validateItemBeforeAdd(theItem))
+                            {
+                                finalBuild.push(theItem);
+                                console.log(`${theItem.name} IS related with ${mainItem.name}`);
+                            }
+                    }
+                    else{
+                        console.log(`${theItem.name} not related with ${mainItem.name}`);
+                    }
+                    
+                } else {
+                    console.log(`${theItem.name} ALREADY ADDED`);
+                }
+        }
+        
+
+        
     }
     sortFinalBuild(finalBuild);
     // Randomly select a boot from the `bootsList` and add it to the build.
@@ -185,6 +220,38 @@ function generateCassiopeiaBuild(){
     }
      finalBuild.push(items[25]);// adding rabbaddon
      sortFinalBuild(finalBuild);
+}
+
+function isRelatedItem(itemTags, item)
+{
+    const commonTags = itemTags.filter(it => item.tags.includes(it));
+    // priority for critic items
+    if(itemTags.includes("CriticalStrike") && item.tags.includes("CriticalStrike"))
+    {
+        numberOfCriticItems++;
+        if (numberOfCriticItems >= 3)
+        {
+            console.log("2 many critic items")
+            return false;
+            
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    if(commonTags.length == item.tags.length)
+    {
+        return true;
+    }
+
+
+    if (commonTags.length >= 3)
+    {
+        return true;
+    }
+    return false;
 }
 function validateItemBeforeAdd(theItem){
     if(hasJewel(theItem) &&
