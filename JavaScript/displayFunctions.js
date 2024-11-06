@@ -5,7 +5,7 @@ function displayBuild(){
         // Iterate over each element with forEach
         elements.forEach(element => {
             let item = finalBuild[i];
-            let imagePath = `https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/${getItemID(item)}.png `;
+            let imagePath = `https://ddragon.leagueoflegends.com/cdn/14.21.1/img/item/${getItemID(item)}.png `;
             let htmlOutput = "";
             htmlOutput += `<img src="${imagePath}" alt="itemPic"></img>`;  
             htmlOutput += `<div class="info-box">`; // adding div

@@ -1,19 +1,3 @@
-// Function to filter valid items in SR (not boots)
-function isValidItem(item) {
-    return item.maps["11"] === true && // Item belongs to Summoner's Rift
-           item.gold.purchasable === true && // Item is purchasable
-           item.gold.total > 2400 && // Item costs more than 2400 gold
-           !item.from.includes("3006"); // Exclude boots (ID 3006)
-}
-
-// Function to filter is the imte is a boot
-function isBootItem(item) {
-    return item.hasOwnProperty("from") &&
-     item.from.includes("1001") &&
-     item.maps["11"] === true && // Item belongs to Summoner's Rift
-     item.gold.purchasable === true; // Boots typically have ID "1001"
-}
-
 // make sure stacking and wave clear items comes first. final build items goes last
 function sortFinalBuild(buildList){
     let removedItem;
@@ -121,6 +105,8 @@ function generateBuildNoManaItems(){
         let itemNumber = Math.floor(Math.random() * items.length);  // Randomly select an item.
         let theItem = items[itemNumber];
 
+        
+
         // First, check if the item is already in the build by name.
         // then check if item has any mana property;
         if (!finalBuild.some(item => item.name === theItem.name) &&
@@ -141,9 +127,29 @@ function generateBuildNoManaItems(){
     let buildBoots = bootsList[Math.floor(Math.random() * bootsList.length)];
     finalBuild.push(buildBoots);
 }
+
+function TagsCheckAndCreation(mainItem, theItem){
+        finalBuild.push(theItem);
+        console.log(`${theItem.name} ADDED`);
+        for (let i = 0; i < theItem.tags.length; i++)
+        {
+            if(theItem.tags[i] !="Active" || theItem.tags[i] !="Tenacity" ||
+                theItem.tags[i] !="SpellBlock" || theItem.tags[i] !="Aura" ||
+                theItem.tags[i] !="GoldPer" || theItem.tags[i] !="CooldownReduction")
+            {
+                firstItemTags.unshift(theItem.tags[i]);
+                if(theItem.tags[i] == "OnHit")
+                {
+                    firstItemTags.unshift("Damage");
+                }
+            }
+        }
+        console.log(mainItem.name);
+        console.log(firstItemTags);
+}
 function generateregularBuild(){
-    let mainItem;
-    let firstItemTags = [];
+    
+    firstItemTags = [];
     numberOfCriticItems = 0;
     while (finalBuild.length < 5) {
         let itemNumber = Math.floor(Math.random() * items.length);  // Randomly select an item.
@@ -151,22 +157,12 @@ function generateregularBuild(){
         
         if( finalBuild.length < 1)
         {
-            if(theItem.tags.length <=2)
+            if(theItem.tags.length <=3 && !theItem.tags.includes("CriticalStrike"))
             {
                 continue;
             }
             mainItem = items[itemNumber];
-            finalBuild.push(theItem);
-            console.log(`${theItem.name} ADDED`);
-            for (let i = 0; i < theItem.tags.length; i++)
-            {
-                if(theItem.tags[i] !="Active")
-                {
-                    firstItemTags.unshift(theItem.tags[i]);
-                }
-            }
-            console.log(mainItem.name);
-            console.log(firstItemTags);
+            TagsCheckAndCreation(mainItem,theItem);
         }
         else
         {
@@ -204,6 +200,7 @@ function generateCassiopeiaBuild(){
         let itemNumber = Math.floor(Math.random() * items.length);  // Randomly select an item.
         let theItem = items[itemNumber];
 
+
         // First, check if the item is already in the build by name.
         if (!finalBuild.some(item => item.name === theItem.name) &&
              theItem.name != "Rabadon's Deathcap" &&
@@ -228,10 +225,17 @@ function isRelatedItem(itemTags, item)
     // priority for critic items
     if(itemTags.includes("CriticalStrike") && item.tags.includes("CriticalStrike"))
     {
+        firstItemTags = [];
+        firstItemTags.unshift("Damage");
+            firstItemTags.unshift("AttackSpeed");
+            firstItemTags.unshift("CriticalStrike");
+            firstItemTags.unshift("NonbootsMovement");
+            firstItemTags.unshift("OnHit");
         numberOfCriticItems++;
-        if (numberOfCriticItems >= 3)
+        if (numberOfCriticItems >= 4)
         {
             console.log("2 many critic items")
+            
             return false;
             
         }
@@ -245,6 +249,12 @@ function isRelatedItem(itemTags, item)
     {
         return true;
     }
+    if(item.tags.length == 3 && commonTags.length >= 2)
+    {
+        firstItemTags.unshift("AbilityHaste");
+        return true;
+        
+    }
 
 
     if (commonTags.length >= 3)
@@ -253,146 +263,7 @@ function isRelatedItem(itemTags, item)
     }
     return false;
 }
-function validateItemBeforeAdd(theItem){
-    if(hasJewel(theItem) &&
-        hasTiamat(theItem) &&
-        hasSheen(theItem) &&
-        hasTear(theItem) &&
-        hasLW(theItem) &&
-        hasBamiCinder(theItem) &&
-        isValidRunan(theItem) &&
-        hasShieldItem(theItem))
-        {
-            return true
-        }
-        else{
-            return false
-        }
-}
-function hasShieldItem(theItem){
-    if(getItemID(theItem) == "3053" ||
-        getItemID(theItem) == "6673" ||
-        getItemID(theItem) == "3156" ||
-        getItemID(theItem) == "3003")
-        {
-            if (!finalBuild.some(item => getItemID(theItem) == "3053" ||
-                                            getItemID(theItem) == "6673" ||
-                                            getItemID(theItem) == "3156") ||
-                                            getItemID(theItem) == "3003") {
-                return true  // Add the item.
-            } else {
-                console.log(`Another item with Shield is already in the build: ${theItem.name}`);
-                return false;
-            }
-        }
-    else {
-        return true;
-    }
-}
-function hasJewel(theItem){
-    if (theItem.from.includes("4630") ) {
-        // Ensure no other item in the finalBuild has 3077 in its 'from' array.
-        if (!finalBuild.some(item => item.from.includes("4630") ||
-                                        getItemID(item) == "8020")) {
-            return true  // Add the item.
-        } else {
-            console.log(`Another item with Jewel/Magic pen by % is already in the build: ${theItem.name}`);
-            return false;
-        }
-    } else {
-        // If 3077 is not involved, add the item directly.
-        return true;
-    }
-    
-}
-function hasBamiCinder(theItem){
-    if (theItem.from.includes("6660")) {
-        // Ensure no other item in the finalBuild has 3077 in its 'from' array.
-        if (!finalBuild.some(item => item.from.includes("6660"))) {
-            return true  // Add the item.
-        } else {
-            console.log(`Another item with Bami's Cinder is already in the build: ${theItem.name}`);
-            return false;
-        }
-    } else {
-        // If 3077 is not involved, add the item directly.
-        return true;
-    }
-}
-function hasTiamat(theItem){
-    if (theItem.from.includes("3077")) {
-        // Ensure no other item in the finalBuild has 3077 in its 'from' array.
-        if (!finalBuild.some(item => item.from.includes("3077"))) {
-            return true  // Add the item.
-        } else {
-            console.log(`Another item with Tiamat is already in the build: ${theItem.name}`);
-            return false;
-        }
-    } else {
-        // If 3077 is not involved, add the item directly.
-        return true;
-    }
-}
-function hasSheen(theItem){
-    if (theItem.from.includes("3057")) {
-        // Ensure no other item in the finalBuild has 3077 in its 'from' array.
-        if (!finalBuild.some(item => item.from.includes("3057"))) {
-            return true  // Add the item.
-        } else {
-            console.log(`Another item with Sheen is already in the build: ${theItem.name}`);
-            return false;
-        }
-    } else {
-        // If 3077 is not involved, add the item directly.
-        return true;
-    }
-}
 
-function hasTear(theItem){
-    if (theItem.from.includes("3070")) {
-        // Ensure no other item in the finalBuild has 3077 in its 'from' array.
-        if (!finalBuild.some(item => item.from.includes("3070"))) {
-            return true  // Add the item.
-        } else {
-            console.log(`Another item with Tear is already in the build: ${theItem.name}`);
-            return false;
-        }
-    } else {
-        // If 3077 is not involved, add the item directly.
-        return true;
-    }
-}
-function isValidRunan(theItem){
-    if(theItem.name != "Runaan's Hurricane"){
-        return true;
-    }
-    else{
-        if (championObject.stats.attackrange > 400){
-            return true;
-        } else {
-            return false;
-        }
-    } 
-}
-//     
-function hasLW(theItem){
-    if (theItem.from.includes("3035") ||
-        getItemID(theItem) == "3302" ||
-        getItemID(theItem) == "3071") {
-        // Ensure no other item in the finalBuild has LW in its 'from' array.
-        if (!finalBuild.some(item => item.from.includes("3035") ||
-                                        getItemID(theItem) == "3302" ||
-                                        getItemID(theItem) == "3071")) {
-            return true;  // Add the item.
-        } else {
-            console.log(`Another item with Last Whisper is already in the build: ${theItem.name}`);
-            return false;
-        }
-    } else {
-        // If 3077 is not involved, add the item directly.
-        return true;
-    }
-}
 
 // Function to clear the current build by resetting the `finalBuild` array.
 function clearBuild() {

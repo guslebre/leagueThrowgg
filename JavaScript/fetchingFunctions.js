@@ -8,7 +8,7 @@
 
 // Main fetching function Items
 function fetchingItems() {
-    const url = "https://ddragon.leagueoflegends.com/cdn/14.20.1/data/en_US/item.json";
+    const url = "https://ddragon.leagueoflegends.com/cdn/14.21.1/data/en_US/item.json";
     
     fetchData(url).then(data => {
         const itemArray = data.data;
@@ -37,7 +37,7 @@ function fetchingItems() {
 
 // Function to fetch all champions
 async function fetchingChampions() {
-    const url = "https://ddragon.leagueoflegends.com/cdn/14.20.1/data/en_US/champion.json";
+    const url = "https://ddragon.leagueoflegends.com/cdn/14.21.1/data/en_US/champion.json";
 
     try {
         const data = await fetchData(url);
@@ -66,7 +66,7 @@ async function fetchingChampions() {
 
 // Function to fetch individual champion data
 async function fetchChampionData() {
-    const baseURL = 'https://ddragon.leagueoflegends.com/cdn/14.20.1/data/en_US/champion/';
+    const baseURL = 'https://ddragon.leagueoflegends.com/cdn/14.21.1/data/en_US/champion/';
     let championDataList = [];
 
     // Wait until fetchingChampions is complete

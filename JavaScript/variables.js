@@ -19,6 +19,8 @@ const leagueChampions = [];
 const championList = [];
 let shieldItemAdded = false;
 let numberOfCriticItems = 0;
+let firstItemTags = [];
+let mainItem;
 
 // List of League of Legends champions to randomly select from.
 const leagueChampionsNames = [];
