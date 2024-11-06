@@ -105,22 +105,34 @@ function generateBuildNoManaItems(){
         let itemNumber = Math.floor(Math.random() * items.length);  // Randomly select an item.
         let theItem = items[itemNumber];
 
+        if( finalBuild.length < 1)
+            {
+                if(theItem.tags.length <=3 && !theItem.tags.includes("CriticalStrike"))
+                {
+                    continue;
+                }
+                mainItem = items[itemNumber];
+                TagsCheckAndCreation(mainItem,theItem);
+            }
+        else{
+            // First, check if the item is already in the build by name.
+            // then check if item has any mana property;
+            if (!finalBuild.some(item => item.name === theItem.name) &&
+                !theItem.tags.includes("Mana") && 
+                !theItem.tags.includes("ManaRegen")) {
+                // Then, do not repeat items
+                if(validateItemBeforeAdd(theItem))
+                {
+                    finalBuild.push(theItem);
+                }
+                
+            } else {
+                console.log(`${theItem.name} ALREADY ADDED`);
+            }
+        }
         
 
-        // First, check if the item is already in the build by name.
-        // then check if item has any mana property;
-        if (!finalBuild.some(item => item.name === theItem.name) &&
-            !theItem.tags.includes("Mana") && 
-            !theItem.tags.includes("ManaRegen")) {
-            // Then, do not repeat items
-            if(validateItemBeforeAdd(theItem))
-            {
-                finalBuild.push(theItem);
-            }
-            
-        } else {
-            console.log(`${theItem.name} ALREADY ADDED`);
-        }
+        
     }
     sortFinalBuild(finalBuild);
     // Randomly select a boot from the `bootsList` and add it to the build.
@@ -185,9 +197,6 @@ function generateregularBuild(){
                     console.log(`${theItem.name} ALREADY ADDED`);
                 }
         }
-        
-
-        
     }
     sortFinalBuild(finalBuild);
     // Randomly select a boot from the `bootsList` and add it to the build.
@@ -200,20 +209,31 @@ function generateCassiopeiaBuild(){
         let itemNumber = Math.floor(Math.random() * items.length);  // Randomly select an item.
         let theItem = items[itemNumber];
 
-
-        // First, check if the item is already in the build by name.
-        if (!finalBuild.some(item => item.name === theItem.name) &&
-             theItem.name != "Rabadon's Deathcap" &&
-             theItem.name != "Runaan's Hurricane") {
+        if( finalBuild.length < 1)
+            {
+                if(theItem.tags.length <=3 && !theItem.tags.includes("CriticalStrike"))
+                {
+                    continue;
+                }
+                mainItem = items[itemNumber];
+                TagsCheckAndCreation(mainItem,theItem);
+            }
+        else{
+            // First, check if the item is already in the build by name.
+            if (!finalBuild.some(item => item.name === theItem.name) &&
+            theItem.name != "Rabadon's Deathcap" &&
+            theItem.name != "Runaan's Hurricane") {
             // Then, check the special case for 3077.
             if(validateItemBeforeAdd(theItem))
             {
-                finalBuild.push(theItem);
+            finalBuild.push(theItem);
             }
-            
-        } else {
+
+            } else {
             console.log(`${theItem.name} ALREADY ADDED`);
+            }
         }
+        
     }
      finalBuild.push(items[25]);// adding rabbaddon
      sortFinalBuild(finalBuild);

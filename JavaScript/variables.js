@@ -17,6 +17,7 @@ let finalBuild = [];
 const items = new Array();
 const leagueChampions = [];
 const championList = [];
+const runesList = [];
 let shieldItemAdded = false;
 let numberOfCriticItems = 0;
 let firstItemTags = [];

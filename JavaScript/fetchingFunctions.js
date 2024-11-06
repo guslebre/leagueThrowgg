@@ -1,10 +1,3 @@
-// Function to fetch items from the League of Legends API and populate the `items` array.
-// Function to fetch data from the API
-// function fetchData(url) {
-//     return fetch(url)
-//         .then(res => res.json()) // Return the parsed JSON data
-//         .catch(error => console.error("Error fetching data:", error));
-// }
 
 // Main fetching function Items
 function fetchingItems() {
@@ -30,6 +23,26 @@ function fetchingItems() {
         // // After processing items, generate the build
          generateBuild();
          displayBuild();
+    });
+}
+
+function fetchingRunes() {
+    const url = "https://ddragon.leagueoflegends.com/cdn/14.21.1/data/en_US/runesReforged.json";
+    
+    fetchData(url).then(data => {
+        const runeArray = data;
+        console.log(runeArray);
+        // Loop through the items
+        runesList.push(runeArray);
+        console.log(runeArray);
+        for (let key in runeArray) {
+            if (runeArray.hasOwnProperty(key)) {
+                let runeObject = runeArray[key];
+                
+
+            }
+        }
+        
     });
 }
 
