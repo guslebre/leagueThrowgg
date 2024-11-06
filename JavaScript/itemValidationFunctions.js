@@ -40,7 +40,7 @@ function hasShieldItem(theItem){
                                             getItemID(theItem) == "3003") {
                 return true  // Add the item.
             } else {
-                console.log(`Another item with Shield is already in the build: ${theItem.name}`);
+               // console.log(`Another item with Shield is already in the build: ${theItem.name}`);
                 return false;
             }
         }
@@ -55,7 +55,7 @@ function hasJewel(theItem){
                                         getItemID(item) == "8020")) {
             return true  // Add the item.
         } else {
-            console.log(`Another item with Jewel/Magic pen by % is already in the build: ${theItem.name}`);
+            //console.log(`Another item with Jewel/Magic pen by % is already in the build: ${theItem.name}`);
             return false;
         }
     } else {
@@ -70,7 +70,7 @@ function hasBamiCinder(theItem){
         if (!finalBuild.some(item => item.from.includes("6660"))) {
             return true  // Add the item.
         } else {
-            console.log(`Another item with Bami's Cinder is already in the build: ${theItem.name}`);
+           // console.log(`Another item with Bami's Cinder is already in the build: ${theItem.name}`);
             return false;
         }
     } else {
@@ -84,7 +84,7 @@ function hasTiamat(theItem){
         if (!finalBuild.some(item => item.from.includes("3077"))) {
             return true  // Add the item.
         } else {
-            console.log(`Another item with Tiamat is already in the build: ${theItem.name}`);
+            //console.log(`Another item with Tiamat is already in the build: ${theItem.name}`);
             return false;
         }
     } else {
@@ -98,7 +98,7 @@ function hasSheen(theItem){
         if (!finalBuild.some(item => item.from.includes("3057"))) {
             return true  // Add the item.
         } else {
-            console.log(`Another item with Sheen is already in the build: ${theItem.name}`);
+            //console.log(`Another item with Sheen is already in the build: ${theItem.name}`);
             return false;
         }
     } else {
@@ -113,7 +113,7 @@ function hasTear(theItem){
         if (!finalBuild.some(item => item.from.includes("3070"))) {
             return true  // Add the item.
         } else {
-            console.log(`Another item with Tear is already in the build: ${theItem.name}`);
+            //console.log(`Another item with Tear is already in the build: ${theItem.name}`);
             return false;
         }
     } else {
@@ -144,7 +144,7 @@ function hasLW(theItem){
                                         getItemID(theItem) == "3071")) {
             return true;  // Add the item.
         } else {
-            console.log(`Another item with Last Whisper is already in the build: ${theItem.name}`);
+            //console.log(`Another item with Last Whisper is already in the build: ${theItem.name}`);
             return false;
         }
     } else {

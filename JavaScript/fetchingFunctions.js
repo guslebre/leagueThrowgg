@@ -26,23 +26,73 @@ function fetchingItems() {
     });
 }
 
+function sortingRunesToTheirObjects(object, runeObject){
+    mainRunes = [];
+    for(let rune in runeObject.slots[0].runes){
+        mainRunes.push(runeObject.slots[0].runes[rune]);
+    }
+    object.mainRow = mainRunes;
+    mainRunes = [];
+    for(let rune in runeObject.slots[1].runes){
+        //  console.log(runeObject.slots[1].runes[rune]);
+        mainRunes.push(runeObject.slots[1].runes[rune]);
+    }
+    object.secondRow = mainRunes;
+    mainRunes = [];
+    for(let rune in runeObject.slots[2].runes){
+        //  console.log(runeObject.slots[1].runes[rune]);
+        mainRunes.push(runeObject.slots[2].runes[rune]);
+    }
+    object.thridRow = mainRunes;
+    mainRunes = [];
+    for(let rune in runeObject.slots[3].runes){
+        //  console.log(runeObject.slots[1].runes[rune]);
+        mainRunes.push(runeObject.slots[3].runes[rune]);
+    }
+    object.fourthRow = mainRunes;
+}
+
 function fetchingRunes() {
     const url = "https://ddragon.leagueoflegends.com/cdn/14.21.1/data/en_US/runesReforged.json";
     
     fetchData(url).then(data => {
-        const runeArray = data;
-        console.log(runeArray);
+        const allRunesArray = data;
+        console.log(allRunesArray);
         // Loop through the items
-        runesList.push(runeArray);
-        console.log(runeArray);
-        for (let key in runeArray) {
-            if (runeArray.hasOwnProperty(key)) {
-                let runeObject = runeArray[key];
+        for (let key in allRunesArray) {
+            let mainRunes = [];
+            if (allRunesArray.hasOwnProperty(key)) {
+                let runeObject = allRunesArray[key];
+              //console.log(runeObject.slots[1].runes);
+                switch (runeObject.key) {
+                    case "Domination":
+                        sortingRunesToTheirObjects(dominationTree,runeObject);
+                      break;
+                    case "Inspiration":
+                        sortingRunesToTheirObjects(inspirationTree,runeObject);
+                      break;
+                    case "Precision":
+                        sortingRunesToTheirObjects(precisionTree,runeObject);
+                        break;
+                    case "Resolve":
+                        sortingRunesToTheirObjects(resolveTree,runeObject);
+                        break;
+                    case "Sorcery":
+                        sortingRunesToTheirObjects(sorceryTree,runeObject);
+                        break;
+                    default:
+                      console.log(`Error: key is ${runeObject.key}`);
+                      break;
+                  }
                 
 
             }
         }
-        
+        console.log(precisionTree);
+        console.log(inspirationTree);
+        console.log(dominationTree);
+        console.log(resolveTree);
+        console.log(sorceryTree);
     });
 }
 

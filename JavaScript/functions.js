@@ -156,8 +156,8 @@ function TagsCheckAndCreation(mainItem, theItem){
                 }
             }
         }
-        console.log(mainItem.name);
-        console.log(firstItemTags);
+      //  console.log(mainItem.name);
+      //  console.log(firstItemTags);
 }
 function generateregularBuild(){
     
@@ -186,15 +186,15 @@ function generateregularBuild(){
                         if(validateItemBeforeAdd(theItem))
                             {
                                 finalBuild.push(theItem);
-                                console.log(`${theItem.name} IS related with ${mainItem.name}`);
+                             //   console.log(`${theItem.name} IS related with ${mainItem.name}`);
                             }
                     }
                     else{
-                        console.log(`${theItem.name} not related with ${mainItem.name}`);
+                        //console.log(`${theItem.name} not related with ${mainItem.name}`);
                     }
                     
                 } else {
-                    console.log(`${theItem.name} ALREADY ADDED`);
+                    (`${theItem.name} ALREADY ADDED`);
                 }
         }
     }
@@ -230,7 +230,7 @@ function generateCassiopeiaBuild(){
             }
 
             } else {
-            console.log(`${theItem.name} ALREADY ADDED`);
+          //  console.log(`${theItem.name} ALREADY ADDED`);
             }
         }
         
