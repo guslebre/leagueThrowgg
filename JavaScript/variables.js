@@ -49,3 +49,5 @@ const leagueChampionsNames = [];
 for(let i = 0; i < leagueChampionsNames.length;i++){
     leagueChampionsNames.push(leagueChampions.id);
 }
+
+let allBuildItemsTags = [];

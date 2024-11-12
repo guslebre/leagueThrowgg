@@ -107,10 +107,12 @@ function generateBuildNoManaItems(){
 
         if( finalBuild.length < 1)
             {
-                if(theItem.tags.length <=3 && !theItem.tags.includes("CriticalStrike"))
+                if((theItem.tags.length <=3 && !theItem.tags.includes("CriticalStrike")) ||
+                    theItem.name == "Stormsurge")
                 {
                     continue;
                 }
+                console.log(`${theItem.name} id is ${getItemID(theItem)}`);
                 mainItem = items[itemNumber];
                 TagsCheckAndCreation(mainItem,theItem);
             }
@@ -136,8 +138,7 @@ function generateBuildNoManaItems(){
     }
     sortFinalBuild(finalBuild);
     // Randomly select a boot from the `bootsList` and add it to the build.
-    let buildBoots = bootsList[Math.floor(Math.random() * bootsList.length)];
-    finalBuild.push(buildBoots);
+    addRelatedBoots();
 }
 
 function TagsCheckAndCreation(mainItem, theItem){
@@ -147,7 +148,8 @@ function TagsCheckAndCreation(mainItem, theItem){
         {
             if(theItem.tags[i] !="Active" || theItem.tags[i] !="Tenacity" ||
                 theItem.tags[i] !="SpellBlock" || theItem.tags[i] !="Aura" ||
-                theItem.tags[i] !="GoldPer" || theItem.tags[i] !="CooldownReduction")
+                theItem.tags[i] !="GoldPer" || theItem.tags[i] !="CooldownReduction" ||
+                theItem.tags[i] !="AbilityHaste" || theItem.tags[i] != "Slow" || theItem.tags[i] != "ManaRegen")
             {
                 firstItemTags.unshift(theItem.tags[i]);
                 if(theItem.tags[i] == "OnHit")
@@ -156,8 +158,49 @@ function TagsCheckAndCreation(mainItem, theItem){
                 }
             }
         }
-      //  console.log(mainItem.name);
-      //  console.log(firstItemTags);
+}
+function isRelatedItem(itemTags, item)
+{
+    const commonTags = itemTags.filter(it => item.tags.includes(it));
+    // priority for critic items
+    if(itemTags.includes("CriticalStrike") && item.tags.includes("CriticalStrike"))
+    {
+        firstItemTags = [];
+        firstItemTags.unshift("Damage");
+            firstItemTags.unshift("AttackSpeed");
+            firstItemTags.unshift("CriticalStrike");
+            firstItemTags.unshift("NonbootsMovement");
+            firstItemTags.unshift("OnHit");
+        numberOfCriticItems++;
+        if (numberOfCriticItems >= 4)
+        {
+            console.log("Too many critic items")
+            
+            return false;
+            
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    if(commonTags.length == item.tags.length)
+    {
+        return true;
+    }
+    if(item.tags.length == 3 && commonTags.length >= 2)
+    {
+        return true;
+        
+    }
+
+
+    if (commonTags.length >= 3)
+    {
+        return true;
+    }
+    return false;
 }
 function generateregularBuild(){
     
@@ -169,7 +212,8 @@ function generateregularBuild(){
         
         if( finalBuild.length < 1)
         {
-            if(theItem.tags.length <=3 && !theItem.tags.includes("CriticalStrike"))
+            if((theItem.tags.length <=3 && !theItem.tags.includes("CriticalStrike")) ||
+                    theItem.name == "Stormsurge")
             {
                 continue;
             }
@@ -186,7 +230,8 @@ function generateregularBuild(){
                         if(validateItemBeforeAdd(theItem))
                             {
                                 finalBuild.push(theItem);
-                             //   console.log(`${theItem.name} IS related with ${mainItem.name}`);
+                                console.log(`${theItem.name} IS related with ${mainItem.name}`);
+                                console.log(firstItemTags);
                             }
                     }
                     else{
@@ -200,8 +245,8 @@ function generateregularBuild(){
     }
     sortFinalBuild(finalBuild);
     // Randomly select a boot from the `bootsList` and add it to the build.
-    let buildBoots = bootsList[Math.floor(Math.random() * bootsList.length)];
-    finalBuild.push(buildBoots);
+    addRelatedBoots();
+    console.log(firstItemTags);
  }
 // script for generating build for Casiopeia // No boots
 function generateCassiopeiaBuild(){
@@ -226,7 +271,7 @@ function generateCassiopeiaBuild(){
             // Then, check the special case for 3077.
             if(validateItemBeforeAdd(theItem))
             {
-            finalBuild.push(theItem);
+                finalBuild.push(theItem);
             }
 
             } else {
@@ -239,50 +284,59 @@ function generateCassiopeiaBuild(){
      sortFinalBuild(finalBuild);
 }
 
-function isRelatedItem(itemTags, item)
-{
-    const commonTags = itemTags.filter(it => item.tags.includes(it));
-    // priority for critic items
-    if(itemTags.includes("CriticalStrike") && item.tags.includes("CriticalStrike"))
-    {
-        firstItemTags = [];
-        firstItemTags.unshift("Damage");
-            firstItemTags.unshift("AttackSpeed");
-            firstItemTags.unshift("CriticalStrike");
-            firstItemTags.unshift("NonbootsMovement");
-            firstItemTags.unshift("OnHit");
-        numberOfCriticItems++;
-        if (numberOfCriticItems >= 4)
+function addRelatedBoots(){
+    if (firstItemTags.includes("Damage") ||
+    firstItemTags.includes("AttackSpeed") ||
+    firstItemTags.includes("CriticalStrike")){
+        let number = Math.floor(Math.random() * 2);
+        if (number == 0)
+            {
+                let buildBoots = bootsList[0];
+                finalBuild.push(buildBoots);
+            } else
+            {
+                let buildBoots = bootsList[1];
+                finalBuild.push(buildBoots);
+            }
+    }
+    else if(firstItemTags.includes("SpellDamage")){
+        let number = Math.floor(Math.random() * 2);
+        if (number == 0)
+            {
+                let buildBoots = bootsList[3];
+                finalBuild.push(buildBoots);
+            } else
+            {
+                let buildBoots = bootsList[6];
+                finalBuild.push(buildBoots);
+            }
+    } 
+    else if (firstItemTags.includes("Health") ||
+    firstItemTags.includes("Armor") ||
+    firstItemTags.includes("MagicResist")){
+        let number = Math.floor(Math.random() * 2);
+        console.log(number);
+        if (number == 0)
         {
-            console.log("2 many critic items")
-            
-            return false;
-            
-        }
-        else
+            let buildBoots = bootsList[4];
+            finalBuild.push(buildBoots);
+        } else
         {
-            return true;
+            let buildBoots = bootsList[5];
+            finalBuild.push(buildBoots);
         }
     }
-
-    if(commonTags.length == item.tags.length)
-    {
-        return true;
+    else{
+        let buildBoots = bootsList[6];
+        finalBuild.push(buildBoots);
     }
-    if(item.tags.length == 3 && commonTags.length >= 2)
-    {
-        firstItemTags.unshift("AbilityHaste");
-        return true;
-        
-    }
-
-
-    if (commonTags.length >= 3)
-    {
-        return true;
-    }
-    return false;
 }
+
+function addBuildItemTagsToArray(theItem){
+    return true;
+}
+
+
 
 
 // Function to clear the current build by resetting the `finalBuild` array.
